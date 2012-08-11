@@ -18,11 +18,12 @@ class Application_Model_AdsMapper
 	 * @param Application_Model_Ads $ads
 	 * @throws Exception
 	 */
-	public function save(Application_Model_Ads $ads)
+	public function save(Application_Model_Ads $ads, $id_user)
 	{
 		$data = array(
-				'text' => $ads->getText(),
-				'title' => $ads->getTitle(),
+				'text'		=> $ads->getText(),
+				'title'		=> $ads->getTitle(),
+				'id_user'	=> $ads->setId_user($id_user)
 		);
 		 	
 		// id == null -> insert

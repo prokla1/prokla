@@ -8,6 +8,7 @@ class MeController extends Zend_Controller_Action
      *
      *
      *
+     *
      */
     public function init()
     {
@@ -75,8 +76,44 @@ class MeController extends Zend_Controller_Action
         */
     }
 
+    public function newAdsAction()
+    {
+    	$form = new Application_Form_AdsNew();
+    	
+    	if ($this->getRequest()->isPost()) { // verifica se foi enviado por POST
+    		
+    		if ($form->isValid($this->getRequest()->getPost())) { // verifica se o form é válido
+    	
+    			// model
+    			$ads = new Application_Model_Ads($form->getValues());
+    			 
+    			// mapper
+    			$mapper  = new Application_Model_AdsMapper();
+    			 
+    			try {
+    				// insert user
+    				$user = Zend_Auth::getInstance()->getStorage()->read();
+    				echo "Id User:";
+    				print_r($user->id);
+    				$mapper->save($ads, $user->id);
+    				$this->view->message = "O Anúncio foi salvo com sucesso!";
+    			} catch (Exception $e) {
+    				$this->view->assign('message', $e->getMessage());
+    			}
+    			 
+    			// direciona para alguma pagina de confirmacao ou informando o erro
+    			//return $this->_helper->redirector('index');
+    		}
+    	}   	
+    	
+    	
+    	$this->view->form = $form;
+    }
+
 
 }
+
+
 
 
 

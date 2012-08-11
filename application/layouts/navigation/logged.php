@@ -25,6 +25,13 @@ $pages = array(
 				'title'			=>	'Meus Anúncios',
 	        ),
 			array(
+				'label' 		=> 	'Novo Anúncio',
+				'route'			=>	'default', //pq o navigation dava erro qdo estava num router
+				'controller' 	=> 	'me',
+				'action'		=> 	'new-ads',
+				'title'			=>	'Novo Anúncio',
+	        ),
+			array(
 				'label' 		=> 	'Logout',
 				'route'			=>	'default', //pq o navigation dava erro qdo estava num router
 				'controller' 	=> 	'users',
