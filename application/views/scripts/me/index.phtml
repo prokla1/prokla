@@ -1,0 +1,14 @@
+<br /><br />
+<div id="view-content">
+	<p>View script for controller <b>Me</b> and script/action name <b>index</b></p>
+</div>
+
+
+<?php $user = $this->user;?>
+	<h2>Usuario - <?php echo $user->id ?></h2>
+	
+	<ul>
+		<li>Nome: <?php echo $user->name ?><hr /> </li>
+		<li>Email: <?php echo $user->email ?><hr /> </li>
+		<li>Senha: <?php echo $user->password ?><hr /> </li>
+	</ul>

@@ -1,0 +1,19 @@
+<br /><br />
+<div id="view-content">
+	<p>View script for controller <b>Me</b> and script/action name <b>myAds</b></p>
+</div>
+
+<?php $ads = $this->paginator; ?>
+
+
+
+<ul>
+<?php foreach ($ads as $ad): ?>
+	<li> <?php echo $ad->title?>  - <?php echo $ad->text?> <hr /> </li>	
+<?php endforeach; ?>	
+</ul>
+
+<?php echo $ads ?>
+
+
+
