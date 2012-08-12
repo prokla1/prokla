@@ -1,1 +1,32 @@
-Starting Prokla Project...
+*O arquivo "prokla.sql" na pasta  /docs
+
+É o sql do banco de dados prokla. Roda ele no phpMyAdmin, no SQL do banco "prokla"
+
+
+O layout vc já sabe.
+
+O template base é   /layouts/template/layout.phtml
+
+E cada página esta em  /views/scripts/[nome do controller]/[nome do action]
+
+O .css esta em   /public/css/layout.css
+
+
+
+
+
+Ah, nao esquece que a configuração de conexão com o banco esta em :
+/application/configs/application.ini
+
+
+
+;Database configurations
+resources.db.adapter = PDO_MYSQL
+resources.db.isDefaultTableAdapter = true
+resources.db.params.host = 127.0.0.1
+resources.db.params.username = root		;usuario do banco
+resources.db.params.password = root		;senha de acesso ao banco
+resources.db.params.dbname = prokla		;nome da tabela
+resources.db.params.persistence = true
+resources.db.params.charset = "utf8"
+

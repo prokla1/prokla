@@ -12,3 +12,10 @@ if ($this->message)
 	echo $this->form;
 ?>
 
+
+
+
+<?php 
+	$this->headScript()->setSeparator(PHP_EOL)
+		->prependFile($this->baseUrl('/js/jquery.placeholder.min.js'));
+?>

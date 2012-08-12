@@ -23,9 +23,9 @@ class Application_Model_AdsMapper
 		$data = array(
 				'text'		=> $ads->getText(),
 				'title'		=> $ads->getTitle(),
-				'id_user'	=> $ads->setId_user($id_user)
+				'id_user'	=> $id_user
 		);
-		 	
+		
 		// id == null -> insert
 		if (null === ($id = $ads->getId())) {
 			unset($data['id']);

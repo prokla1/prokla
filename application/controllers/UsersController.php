@@ -6,6 +6,10 @@ class UsersController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+    	$this->flashMessenger = $this->_helper->getHelper('FlashMessenger');
+    	if ($this->flashMessenger->hasMessages()) {
+    		$this->view->messages = $this->flashMessenger->getMessages();
+    	}
     }
 
     public function indexAction()
@@ -31,6 +35,11 @@ class UsersController extends Zend_Controller_Action
     				// insert user
     				$mapper->save($user);
     				$this->view->message = "Usuário foi salvo com sucesso!";
+    				$this->flashMessenger->addMessage("Usuário criado com sucesso!");
+    				$this->flashMessenger->addMessage("Faça seu login (depois ai direcionar direto)");
+    				
+    				return $this->_helper->redirector->goToRoute( array('controller' => 'me'), null, true);
+
     			} catch (Exception $e) {
     				$this->view->assign('message', $e->getMessage());
     			}

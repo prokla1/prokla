@@ -104,7 +104,7 @@ class Application_Model_User
 	 * @param field_type $_password
 	 */
 	public function setPassword($_password) {
-		$this->_password = $_password;
+		$this->_password = md5($_password);
 	}
 
 	

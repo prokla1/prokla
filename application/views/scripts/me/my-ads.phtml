@@ -1,19 +1,20 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Me</b> and script/action name <b>myAds</b></p>
-</div>
+<?php if (count($this->messages)) : ?>
+	<ul id="messages">
+	<?php foreach ($this->messages as $message) : ?>
+	    <li><?php echo $this->escape($message); ?></li>
+	<?php endforeach; ?>
+	</ul>
+<?php endif; ?>
+
 
 <?php $ads = $this->paginator; ?>
-
-
-
 <ul>
 <?php foreach ($ads as $ad): ?>
 	<li> <?php echo $ad->title?>  - <?php echo $ad->text?> <hr /> </li>	
 <?php endforeach; ?>	
 </ul>
-
 <?php echo $ads ?>
 
 
 
+<a href="<?php echo $this->url(array('controller' => 'me', 'action' => 'new-ads'), null, true); ?>">Criar novo anúncio</a>

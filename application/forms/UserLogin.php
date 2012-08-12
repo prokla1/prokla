@@ -13,7 +13,7 @@ class Application_Form_UserLogin extends Zend_Form
               ->addFilter('StringTrim')
               ->addValidator('NotEmpty')
               ->addValidator('EmailAddress')
-              ->setValue('Email');
+				->setAttrib('placeholder', 'Email');
               
 
         
@@ -23,7 +23,7 @@ class Application_Form_UserLogin extends Zend_Form
               ->addFilter('StripTags')
               ->addFilter('StringTrim')
               ->addValidator('NotEmpty')
-              ->setValue('Senha');
+				->setAttrib('placeholder', 'Senha');
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('Logar')

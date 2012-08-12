@@ -1,5 +1,15 @@
 <h2>Novo Anúncio</h2>
 
+
+<?php if (count($this->messages)) : ?>
+	<ul id="messages">
+	<?php foreach ($this->messages as $message) : ?>
+	    <li><?php echo $this->escape($message); ?></li>
+	<?php endforeach; ?>
+	</ul>
+<?php endif; ?>
+
+
 <?php 
 if ($this->message)
 	echo $this->message;
@@ -7,3 +17,7 @@ if ($this->message)
 	echo $this->form;
 ?>
 
+<?php 
+	$this->headScript()->setSeparator(PHP_EOL)
+		->prependFile($this->baseUrl('/js/jquery.placeholder.min.js'));
+?>

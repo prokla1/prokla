@@ -14,16 +14,16 @@ class Application_Form_UserCreate extends Zend_Form
         $this->addElement('text', 'name', array(
         		'label'			=> 'Seu Nome:',
         		'required'		=> true,
-        		'value'			=>	'Nome'
+        		'placeholder'	=>	'Nome',
         ));
         
-        
+
         // Add an email element
         $this->addElement('text', 'email', array(
         		'label'			=> 'Seu email:',
         		'required'		=> true,
         		'filters'		=> array('StringTrim'),
-        		'value'			=>	'Email',
+        		'placeholder'	=>	'Email',
         		'validators'	=> array(
         				'EmailAddress',
         		)
@@ -35,7 +35,7 @@ class Application_Form_UserCreate extends Zend_Form
         		'label'			=> 'Crie uma Senha:',
         		'required'   	=> true,
         		'filters'    	=> array('StringTrim'),
-        		'value'			=> 'senha qualquer'
+        		'placeholder'	=>	'Senha',
         ));
         
 

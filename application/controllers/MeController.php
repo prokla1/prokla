@@ -15,6 +15,10 @@ class MeController extends Zend_Controller_Action
         if ( !Zend_Auth::getInstance()->hasIdentity() )
     		return $this->_helper->redirector->goToRoute( array('controller' => 'users', 'action'=> 'login'));
     	
+        $this->flashMessenger = $this->_helper->getHelper('FlashMessenger');
+        if ($this->flashMessenger->hasMessages()) {
+        	$this->view->messages = $this->flashMessenger->getMessages();
+        }
     }
 
     public function indexAction()
@@ -93,22 +97,20 @@ class MeController extends Zend_Controller_Action
     			try {
     				// insert user
     				$user = Zend_Auth::getInstance()->getStorage()->read();
-    				echo "Id User:";
-    				print_r($user->id);
     				$mapper->save($ads, $user->id);
-    				$this->view->message = "O Anúncio foi salvo com sucesso!";
+    				
+    				$this->flashMessenger->addMessage("O anúncio foi criado com sucesso!");
+	    			$this->_helper->redirector->goToRoute( array('controller' => 'me', 'action'=> 'my-ads'));
+	    			 
     			} catch (Exception $e) {
-    				$this->view->assign('message', $e->getMessage());
+    				$this->flashMessenger->addMessage($e->getMessage());
     			}
     			 
-    			// direciona para alguma pagina de confirmacao ou informando o erro
-    			//return $this->_helper->redirector('index');
     		}
     	}   	
     	
-    	
     	$this->view->form = $form;
-    }
+	}
 
 
 }
