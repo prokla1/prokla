@@ -1,0 +1,7 @@
+.top1{height: 120px;}
+
+.container_category{height: 208px;}
+
+.center_allcategory{display: table; margin: 0 auto; border: 1px solid blue; }
+
+.category_link{width: 150px; height: 200px;  border: 1px solid red; float: left; margin: 2px;}

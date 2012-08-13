@@ -1,15 +1,83 @@
 <?php $ads = $this->paginator; ?>
-<ul>
+
+<div class="container_filter">
+
+	<div class="filter">
+		
+		<div class="filter_top">
+			<ul>
+				<li class="title_filter">FILTRO</li>
+				<li class="search_filter"><input type="text" name="search_filter" /></li>
+				<li class="vertical type_ads"><input type="checkbox" value="" />Empresa</li>
+				<li class="vertical type_ads"><input type="checkbox" value="" />Particular</li>
+			</ul>
+		</div>	
+		
+		
+		<div class="filter_center">
+			<ul>
+				<li class="title_filter_category">Filtrar por categorias:</li>
+				<li class="filter_category"><a href="">Categoria X <span class="qtd_category">10</span></a></li>
+				<li class="filter_category">Categoria X <span class="qtd_category">100</span></li>
+				<li class="filter_category">Categoria X <span class="qtd_category">1000</span></li>
+				<li class="filter_category">Categoria X <span class="qtd_category">10000</span></li>
+			</ul>
+		</div>
+
+		<div class="filter_down">
+			<ul>
+				<li style="margin-bottom: 0;"><button class="filter_button">Filtrar agora</button></li>
+			</ul>
+		</div>
+	
+	</div>
+
+</div>
+
+
+<div class="ads_container">
 <?php foreach ($ads as $ad): ?>
-	<li> 
-	<?php echo $ad->title?>  - 
-	<?php echo $ad->text?> -
-	<?php echo $ad->price ?>
-	<a href="">VER</a>
+	<div class="ads_title">
 	
-	<hr /> 
+		<div class="title"><?php echo $ad->title?></div>
+		<div class="price">R$ 100,00</div>
+		
+	</div>
 	
-	</li>	
+	<div class="ads_details">
+		
+		<div class="ads_mold_img">
+			<div class="ads_img"></div>
+		</div>
+		
+		<div class="ads_desc">
+			<?php echo $ad->text?>
+		</div>
+		
+		<div class="ads_location">
+			<ul>
+			<li class="vertical">[ DDD 48 ]</li>
+			<li class="vertical">[ Sul de Santa Catarina ]</li>
+			<li class="vertical">[ Florianopolis ]</li>
+		</div>	
+		
+		<div class="ads_category">
+			<div class="category">Categorias: [ Casas ]</div>   
+			<div class="date_public">Publicado em: 18/10/2012</div>
+		</div>		
+		
+	</div>  
+	
 <?php endforeach; ?>	
-</ul>
+
+</div>
+
 <?php echo $ads ?>
+
+
+
+<?php 
+	$this->headLink()
+	->prependStylesheet($this->baseUrl('/css/list_ads.css'))
+	->prependStylesheet($this->baseUrl('/css/filter.css'));
+?>
