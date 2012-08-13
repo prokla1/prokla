@@ -26,7 +26,7 @@ class Application_Model_AdsMapper
 				'text'		=> $ads->getText(),
 				'title'		=> $ads->getTitle(),
 				'id_user'	=> $id_user,
-				'image'		=> (isset($url_image)) ? 'null.jpg' : $ads->getImage(),
+				'image'		=> (empty($url_image)) ? 'null.jpg' : $ads->getImage(),
 		);
 		
 		// id == null -> insert
