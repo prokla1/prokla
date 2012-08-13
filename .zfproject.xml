@@ -20,6 +20,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="myAds"/>
           <actionMethod actionName="newAds"/>
+          <actionMethod actionName="newAdsPhoto"/>
         </controllerFile>
         <controllerFile controllerName="MyAd">
           <actionMethod actionName="index"/>
@@ -27,6 +28,8 @@
         <controllerFile controllerName="Ads">
           <actionMethod actionName="index"/>
           <actionMethod actionName="list"/>
+          <actionMethod actionName="show"/>
+          <actionMethod actionName="search"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -72,6 +75,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Ads">
             <viewScriptFile forActionName="list"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Me">
+            <viewScriptFile forActionName="newAdsPhoto"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ads">
+            <viewScriptFile forActionName="show"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ads">
+            <viewScriptFile forActionName="search"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

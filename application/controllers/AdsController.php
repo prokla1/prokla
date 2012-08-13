@@ -29,10 +29,26 @@ class AdsController extends Zend_Controller_Action
     		->setItemCountPerPage ( 5 )
     		->setPageRange(10);
     	$this->view->paginator = $ads;
-	}
+    }
+
+    public function showAction()
+    {
+    	$ads = new Application_Model_AdsMapper();
+    	$ad = new Application_Model_Ads();
+    	$this->view->ad = $ads->find($this->_getParam('id', '0'), $ad);
+    }
+
+    public function searchAction()
+    {
+        // action body
+    }
 
 
 }
+
+
+
+
 
 
 

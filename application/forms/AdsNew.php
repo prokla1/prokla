@@ -23,26 +23,20 @@ class Application_Form_AdsNew extends Zend_Form
 				->addValidator('stringLength', true, array(0, 250))
 				->setAttrib('placeholder', 'Texto');
 
-        // Using both captcha and captchaOptions:
-        $captcha = new Zend_Form_Element_Captcha('foo', 
-        		array(
-        		'label' => "Escreva",
-        		'captcha' => 'image',
-        		'captchaOptions' => array(
-        				'captcha' => 'image',
-        				'wordLen' => 6,
-        				'timeout' => 300,
-        		),
-        ));
 
-        
+		$image = new Zend_Form_Element_File('image');
+		$image->setLabel('Foto principal')
+				->setDestination(APPLICATION_PATH.'/../public/ads-image')
+				->setRequired(true)
+				->setDescription('Em seguida poderá inserir mais fotos.');
+		
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('Criar')
         		->setAttrib('id', 'submitbutton');
         
         
-        $this->addElements(array($titulo, $texto, $submit));
+        $this->addElements(array($titulo, $texto, $image, $submit));
     }
 
 

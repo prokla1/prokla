@@ -6,6 +6,8 @@ class Application_Model_Ads
 	protected $_id_user;
 	protected $_title;
 	protected $_text;
+	protected $_price;
+	protected $_image;
 	
 	
 
@@ -107,6 +109,34 @@ class Application_Model_Ads
 	public function setText($_text) {
 		$this->_text = $_text;
 	}
+	/**
+	 * @return the $_price
+	 */
+	public function getPrice() {
+		return $this->_price;
+	}
+
+	/**
+	 * @param field_type $_price
+	 */
+	public function setPrice($_price) {
+		$this->_price = $_price;
+	}
+	/**
+	 * @return the $_image
+	 */
+	public function getImage() {
+		return $this->_image;
+	}
+
+	/**
+	 * @param field_type $_image
+	 */
+	public function setImage($_image) {
+		$this->_image = $_image;
+	}
+
+
 
 	
 

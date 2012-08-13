@@ -1,7 +1,15 @@
 <?php $ads = $this->paginator; ?>
 <ul>
 <?php foreach ($ads as $ad): ?>
-	<li> <?php echo $ad->title?>  - <?php echo $ad->text?> <hr /> </li>	
+	<li> 
+	<?php echo $ad->title?>  - 
+	<?php echo $ad->text?> -
+	<?php echo $ad->price ?>
+	<a href="">VER</a>
+	
+	<hr /> 
+	
+	</li>	
 <?php endforeach; ?>	
 </ul>
 <?php echo $ads ?>

@@ -9,6 +9,7 @@ class MeController extends Zend_Controller_Action
      *
      *
      *
+     *
      */
     public function init()
     {
@@ -16,9 +17,9 @@ class MeController extends Zend_Controller_Action
     		return $this->_helper->redirector->goToRoute( array('controller' => 'users', 'action'=> 'login'));
     	
         $this->flashMessenger = $this->_helper->getHelper('FlashMessenger');
-        if ($this->flashMessenger->hasMessages()) {
+        if ($this->flashMessenger->hasMessages()) 
         	$this->view->messages = $this->flashMessenger->getMessages();
-        }
+        
     }
 
     public function indexAction()
@@ -87,33 +88,41 @@ class MeController extends Zend_Controller_Action
     	if ($this->getRequest()->isPost()) { // verifica se foi enviado por POST
     		
     		if ($form->isValid($this->getRequest()->getPost())) { // verifica se o form é válido
-    	
+    			
+    			
+    			$originalFilename = pathinfo($form->image->getFileName());
+    			$newFilename = 'ads-' . uniqid() . '.' . $originalFilename['extension'];
+    			$form->image->addFilter('Rename', $newFilename);
+
     			// model
     			$ads = new Application_Model_Ads($form->getValues());
-    			 
+
     			// mapper
     			$mapper  = new Application_Model_AdsMapper();
     			 
     			try {
-    				// insert user
+    				// insert Ads
     				$user = Zend_Auth::getInstance()->getStorage()->read();
-    				$mapper->save($ads, $user->id);
+    				$id_ads = $mapper->save($ads, $user->id);
     				
     				$this->flashMessenger->addMessage("O anúncio foi criado com sucesso!");
-	    			$this->_helper->redirector->goToRoute( array('controller' => 'me', 'action'=> 'my-ads'));
+	    			$this->_helper->redirector->goToRoute( array('controller' => 'ads', 'action'=> 'show', 'id' => $id_ads));
 	    			 
     			} catch (Exception $e) {
     				$this->flashMessenger->addMessage($e->getMessage());
     			}
     			 
     		}
-    	}   	
+    	}  	
     	
     	$this->view->form = $form;
-	}
+    }
+    
 
 
 }
+
+
 
 
 

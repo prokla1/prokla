@@ -46,12 +46,12 @@ body{background-color: whiteSmoke;}
 	float: right;
 }
 
-/* =======================  #Page Styles ================================================== */
-
 .top_menus ul li{
 	display: inline;
 	margin-left: 15px;	
 }
+
+/* =======================  #Page Styles ================================================== */
 
 .navigation li a{
 	color: black;

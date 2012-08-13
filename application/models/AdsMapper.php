@@ -15,6 +15,7 @@ class Application_Model_AdsMapper
 	/**
 	 * Salva o anuncio
 	 * Envia o objeto "Ads" e ele é salvo no banco
+	 * @return Retorna o ID do anuncio
 	 * @param Application_Model_Ads $ads
 	 * @throws Exception
 	 */
@@ -23,15 +24,17 @@ class Application_Model_AdsMapper
 		$data = array(
 				'text'		=> $ads->getText(),
 				'title'		=> $ads->getTitle(),
-				'id_user'	=> $id_user
+				'id_user'	=> $id_user,
+				'image'		=> $ads->getImage(),
 		);
 		
 		// id == null -> insert
 		if (null === ($id = $ads->getId())) {
 			unset($data['id']);
-			$this->getDbTable()->insert($data);
+			return $this->getDbTable()->insert($data);
 		} else {
 			$this->getDbTable()->update($data, array('id = ?' => $id));
+			return $ads->getId();
 		}
 	}
 
@@ -43,15 +46,15 @@ class Application_Model_AdsMapper
 	 * @param Application_Model_Ads $ads
 	 * @return void|Application_Model_Ads
 	 */
-	public function find($id, Application_Model_Ads $ads)
+	public function find($id, Application_Model_Ads $ad)
 	{
 		$result = $this->getDbTable()->find($id);
 		if (0 == count($result)) {
 			return;
 		}
 		$row = $result->current();
-		$ads->setOptions($row->toArray());
-		return $ads;
+		$ad->setOptions($row->toArray());
+		return $ad;
 	}	
 	
 	/**
