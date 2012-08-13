@@ -21,11 +21,12 @@ class Application_Model_AdsMapper
 	 */
 	public function save(Application_Model_Ads $ads, $id_user)
 	{
+		$url_image = $ads->getImage();
 		$data = array(
 				'text'		=> $ads->getText(),
 				'title'		=> $ads->getTitle(),
 				'id_user'	=> $id_user,
-				'image'		=> $ads->getImage(),
+				'image'		=> (isset($url_image)) ? 'null.jpg' : $ads->getImage(),
 		);
 		
 		// id == null -> insert

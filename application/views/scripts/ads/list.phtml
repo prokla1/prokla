@@ -35,44 +35,46 @@
 </div>
 
 
-<div class="ads_container">
+
+<div class="ads_container" style="float: right;">
+<?php echo $ads ?>
+
 <?php foreach ($ads as $ad): ?>
 	<div class="ads_title">
 	
-		<div class="title"><?php echo $ad->title?></div>
-		<div class="price">R$ 100,00</div>
+		<div class="title"><a href="<?php echo $this->url(array('controller' => 'ads', 'action' => 'show', 'id' => $ad->id), null, true); ?>"><?php echo $ad->title?></a></div>
+		<div class="price">R$ <?php echo $ad->price ?></div>
 		
 	</div>
-	
-	<div class="ads_details">
-		
-		<div class="ads_mold_img">
-			<div class="ads_img"></div>
-		</div>
-		
-		<div class="ads_desc">
-			<?php echo $ad->text?>
-		</div>
-		
-		<div class="ads_location">
-			<ul>
-			<li class="vertical">[ DDD 48 ]</li>
-			<li class="vertical">[ Sul de Santa Catarina ]</li>
-			<li class="vertical">[ Florianopolis ]</li>
-		</div>	
-		
-		<div class="ads_category">
-			<div class="category">Categorias: [ Casas ]</div>   
-			<div class="date_public">Publicado em: 18/10/2012</div>
-		</div>		
-		
-	</div>  
+		<div class="ads_details">
+			
+			<div class="ads_mold_img">
+				<div class="ads_img"><img src="/ads-image/<?php echo $ad->image ?>" /></div>
+			</div>
+			
+			<div class="ads_desc">
+				<?php echo $ad->text?>
+			</div>
+			
+			<div class="ads_location">
+				<ul>
+				<li class="vertical">[ DDD 48 ]</li>
+				<li class="vertical">[ Sul de Santa Catarina ]</li>
+				<li class="vertical">[ Florianopolis ]</li>
+			</div>	
+			
+			<div class="ads_category">
+				<div class="category">Categorias: [ Casas ]</div>   
+				<div class="date_public">Publicado em: 18/10/2012</div>
+			</div>		
+			
+		</div>  
 	
 <?php endforeach; ?>	
 
+<?php echo $ads ?>
 </div>
 
-<?php echo $ads ?>
 
 
 

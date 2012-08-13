@@ -89,11 +89,13 @@ class MeController extends Zend_Controller_Action
     		
     		if ($form->isValid($this->getRequest()->getPost())) { // verifica se o form é válido
     			
-    			
-    			$originalFilename = pathinfo($form->image->getFileName());
-    			$newFilename = 'ads-' . uniqid() . '.' . $originalFilename['extension'];
-    			$form->image->addFilter('Rename', $newFilename);
+    			if (!isset($form->image)){
+	    			$originalFilename = pathinfo($form->image->getFileName());
+	    			$newFilename = 'ads-' . uniqid() . '.' . $originalFilename['extension'];
+	    			$form->image->addFilter('Rename', $newFilename);
+    			}
 
+    			print_r($form->getValues());
     			// model
     			$ads = new Application_Model_Ads($form->getValues());
 

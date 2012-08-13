@@ -36,7 +36,8 @@
 	height: 106px; 
 	margin: 15px 15px;
 }
-.ads_img{
+
+.ads_img img{
 	width: 100px; 
 	height: 100px; 
 	border: 1px solid #CCC; 

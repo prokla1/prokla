@@ -27,7 +27,6 @@ class Application_Form_AdsNew extends Zend_Form
 		$image = new Zend_Form_Element_File('image');
 		$image->setLabel('Foto principal')
 				->setDestination(APPLICATION_PATH.'/../public/ads-image')
-				->setRequired(true)
 				->setDescription('Em seguida poderá inserir mais fotos.');
 		
 
