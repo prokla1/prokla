@@ -2,13 +2,12 @@
  
 $pages = array(
 			array(
-				'label' 		=> 	'Início',
+				'label' 		=> 	'Anúncios',
 				'route'			=>	'default', //pq o navigation dava erro qdo estava num router
-				'controller' 	=> 	'index',
-				'action'		=> 	'index',
-				'class'			=>	'home',
-				'title'			=>	'Página Inicial',
-				'image'			=>	'/public/img/eua.png'
+				'controller' 	=> 	'ads',
+				'action'		=> 	'list',
+				'class'			=>	'menu_top',
+				'title'			=>	'Anúncios',
 	        ),
 			array(
 				'label' 		=> 	'Cadastrar',
@@ -30,5 +29,4 @@ $pages = array(
     );
  
 return $pages;
- 
 ?>

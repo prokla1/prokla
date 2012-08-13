@@ -34,13 +34,19 @@ echo 	$this->headMeta(),PHP_EOL;
 	
 		<!--=============================== Page Navigation ================================================== -->
 		<div id="top_menu"><!-- [start] top_menu -->
-<?php 
-if ( !Zend_Auth::getInstance()->hasIdentity() ){ 
-	echo $this->navigation()->menu()->renderMenu(Zend_Registry::get('default'));
-}else {
-	echo $this->navigation()->menu()->renderMenu(Zend_Registry::get('logged'));
-	}
-?>	
+			<div class="top_home">
+				<a title="Página Inicial" class="home" href="/">Início</a>
+			</div>
+			<div class="top_menus"">
+				<?php 
+				if ( !Zend_Auth::getInstance()->hasIdentity() ){ 
+					echo $this->navigation()->menu()->renderMenu(Zend_Registry::get('default'));
+				}else {
+					echo $this->navigation()->menu()->renderMenu(Zend_Registry::get('logged'));
+					}
+				?>	
+			</div>
+
 		</div><!-- [end] top_menu -->
 		
 	
