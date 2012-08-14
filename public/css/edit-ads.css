@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+.progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+.bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
+.percent { position:absolute; display:inline-block; top:3px; left:48%; }
+
+
+.ads_mold_img {
+	border: 1px solid #CCC;
+	background-color: #FBFBFB;
+	float: left;
+	width: 106px;
+	height: 106px;
+	margin: 15px 15px;
+}
+.ads_img {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;	
+}
+.ads_img img{
+	vertical-align: middle;
+}

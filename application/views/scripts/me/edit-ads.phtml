@@ -29,8 +29,16 @@ Preço: <?php echo $ad->price ?>
     
     <div id="status"></div>
 
+    <div id="ads-images">
+	<?php  foreach ($this->images as $image) :?>
+		<div class="ads_mold_img">
+			<div class="ads_img"><img src="/ads-image/100px/<?php echo $image->url?>" /></div>
+		</div>
+	<?php endforeach;?>
+	</div>
+
 <?php 
-	$this->headLink()->appendStylesheet('/css/user-photo.css');
-	$this->headScript()->prependFile($this->baseUrl('/js/user-photo.js'))
+	$this->headLink()->appendStylesheet('/css/edit-ads.css');
+	$this->headScript()->prependFile($this->baseUrl('/js/ads-photo.js'))
 						->prependFile($this->baseUrl('/js/jquery.form.js'));
 ?>

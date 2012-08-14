@@ -5,6 +5,9 @@ class Application_Model_DbTable_Ads extends Zend_Db_Table_Abstract
 
     protected $_name = 'ads';
 
+    protected $_primary = 'id';
+    
+    protected $_dependentTables = array('Application_Model_DbTable_Images');
 
 }
 

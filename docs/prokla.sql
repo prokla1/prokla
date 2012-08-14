@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 13/08/2012 às 18h26min
+-- Tempo de Geração: 14/08/2012 às 12h05min
 -- Versão do Servidor: 5.1.63
 -- Versão do PHP: 5.3.14
 
@@ -35,16 +35,10 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `text` text NOT NULL,
   `price` decimal(9,2) NOT NULL DEFAULT '0.00',
   `image` varchar(255) NOT NULL DEFAULT 'null.jpg',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Extraindo dados da tabela `ads`
---
-
-INSERT INTO `ads` (`id`, `id_user`, `title`, `text`, `price`, `image`) VALUES
-(1, 1, 'sd fasd', 'fasd fasd fasd', '0.00', '');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
@@ -60,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_ads` (`id_ads`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=164 ;
 
 -- --------------------------------------------------------
 
@@ -75,14 +69,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Extraindo dados da tabela `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Jus', 'jus@jus.com', '6ecd178dec5ed191b3d7911eabe7b75e');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Restrições para as tabelas dumpadas
