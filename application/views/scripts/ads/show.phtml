@@ -7,15 +7,61 @@ Texto: <?php echo  $ad->title?>
 <hr />
 Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
 
-<pre>
-<?php //print_r($ad)?>
-</pre>
-<pre>
-<?php //print_r($this->ad)?>
-</pre>
-
 <?php  foreach ($this->images as $image) :?>
 
 	<img src="/ads-image/100px/<?php echo $image->url?>" />
 
 <?php endforeach;?>
+<!-- <?php print_r($ad)?>   Titulo:  Texto:  -->
+
+<div style="float: left; border: 1px solid red;">
+
+<div style="margin-bottom: 10px; font-size: 12px">Denunciar abuso | Adicionar aos meus favoritos | Imprimir | Compartilhar</div>
+
+<div style="border: 1px solid #CCC; background-color: #fbfbfb; border-radius: 5px 5px 0 0; padding: 5px 0 5px 10px; display: table;	width: 590px;">
+
+ <?php echo $ad->title?> 
+
+</div>
+
+<div style="width: 498px; height: 300px; border: 1px solid red; float: left;">
+<!--	<img src="/ads-image/<?php echo $ad->image?>" /> -->
+</div>
+
+<div style="float:left; border: 1px solid red; width: 100px; height: 300px;">MINI IMG</div>
+
+<!-- DESC -->
+
+<div><?php echo $ad->title?></div>
+
+
+</div>
+
+
+
+<div style="float: right; border: 1px solid red; width: 250px; height: 300px;">
+
+Detalhes anunciante:<hr />
+
+<ul>
+	<li>Anunciante: Joao</li>
+	<li>+ ver todos anuncios</li>
+	<li>Telefone</li>
+	<li>Enviar msg</li>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+
+
+
+<?php 
+	$this->headLink()
+	->prependStylesheet($this->baseUrl('/css/ads_show.css'));
+?>
