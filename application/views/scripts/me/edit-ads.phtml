@@ -9,17 +9,17 @@
 
 
 <?php $ad = $this->ad; ?>
-
-Titulo: <?php echo $ad->title ?>
-<hr />
-Texto: <?php echo $ad->text ?>
-<hr />
-Preço: <?php echo $ad->price ?>
-
     <form enctype="multipart/form-data" method="post" action="/me/new-ads-photo-upload" id="form_photo">
+
+Titulo: <?php echo $this->form->title ?>
+<hr />
+Texto: <?php echo $this->form->text ?>
+<hr />
+Preço: <?php echo $this->form->price ?>
+
         <input type="file" name="photoimg[]" id="photoimg" multiple><br>
         <input type="hidden" value="<?php echo $ad->id?>" name="ads">
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Enviar imagens extras">
     </form>
     
     <div class="progress">
@@ -32,13 +32,13 @@ Preço: <?php echo $ad->price ?>
     <div id="ads-images">
 	<?php  foreach ($this->images as $image) :?>
 		<div class="ads_mold_img">
-			<div class="ads_img"><img src="/ads-image/100px/<?php echo $image->url?>" /></div>
+			<img src="/ads-image/100px/<?php echo $image->url?>" />
 		</div>
 	<?php endforeach;?>
 	</div>
 
 <?php 
 	$this->headLink()->appendStylesheet('/css/edit-ads.css');
-	$this->headScript()->prependFile($this->baseUrl('/js/ads-photo.js'))
+	$this->headScript()->prependFile($this->baseUrl('/js/edit-ads.js'))
 						->prependFile($this->baseUrl('/js/jquery.form.js'));
 ?>

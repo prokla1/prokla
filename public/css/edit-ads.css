@@ -1,23 +1,27 @@
 @CHARSET "UTF-8";
 
+/* ----------=================  BARRA DE PROGRESSO DO ENVIO DE IMAGENS =============---------- */
 .progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
 .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
 .percent { position:absolute; display:inline-block; top:3px; left:48%; }
 
 
+/* ----------=================  IMAGENS DO ANUNCIO =============---------- */
 .ads_mold_img {
 	border: 1px solid #CCC;
 	background-color: #FBFBFB;
 	float: left;
 	width: 106px;
 	height: 106px;
-	margin: 15px 15px;
-}
-.ads_img {
-	display: table-cell;
+	margin: 5px;
 	text-align: center;
-	vertical-align: middle;	
-}
-.ads_img img{
+	display: table-cell;
 	vertical-align: middle;
+}
+.ads_mold_img img {
+	border: none;
+	padding: 0;
+	top: auto;
+	bottom: auto;
+	margin: auto;
 }

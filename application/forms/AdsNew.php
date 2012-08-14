@@ -23,11 +23,17 @@ class Application_Form_AdsNew extends Zend_Form
               	->setRequired(true)
               	->addValidator('NotEmpty')
 				->addValidator('stringLength', true, array(0, 250))
-		        ->setAttribs(array('required name' => 'text', 'placeholder' => 'Texto'));
+		        ->setAttribs(array(
+			        		'required name'	=>	'text', 
+			        		'placeholder'	=>	'Texto',
+		        			'rows'			=>	'10',
+		        			'cols'			=>	'150',
+		        			));
 
 
         $price = new Zend_Form_Element_Text('price');
         $price->setLabel('Preço:')
+		        ->setAttrib('placeholder', '0,00')
 		        ->setRequired(true)
 		        ->setAttribs(array('required name' => 'price', 'maxlength' => '12'))
 		        ->addFilter('StripTags')

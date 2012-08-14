@@ -31,7 +31,12 @@ class Application_Form_AdsEdit extends Zend_Form
               	->setRequired(true)
               	->addValidator('NotEmpty')
 				->addValidator('stringLength', true, array(0, 250))
-		        ->setAttribs(array('required name' => 'text', 'placeholder' => 'Texto'));
+		        ->setAttribs(array(
+			        		'required name'	=>	'text', 
+			        		'placeholder'	=>	'Texto',
+		        			'rows'			=>	'10',
+		        			'cols'			=>	'150',
+		        			));
 
 
         $price = new Zend_Form_Element_Text('price');

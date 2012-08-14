@@ -11,9 +11,12 @@
 <ul>
 <?php foreach ($ads as $ad): ?>
 	<li>
-	<a href="<?php echo $this->url(array('controller' => 'me', 'action'=> 'edit-ads', 'id' => $ad->id))?>">
+	[<a href="<?php echo $this->url(array('controller' => 'me', 'action'=> 'delete-ads', 'id' => $ad->id))?>">
+	Deletar
+	</a>]
+	[<a href="<?php echo $this->url(array('controller' => 'me', 'action'=> 'edit-ads', 'id' => $ad->id))?>">
 	Editar
-	</a>
+	</a>]
 	 <?php echo $ad->title?>  - <?php echo $ad->text?> <hr /> </li>	
 <?php endforeach; ?>	
 </ul>

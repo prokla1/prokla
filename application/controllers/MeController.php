@@ -14,6 +14,13 @@ class MeController extends Zend_Controller_Action
         $this->flashMessenger = $this->_helper->getHelper('FlashMessenger');
         if ($this->flashMessenger->hasMessages()) 
         	$this->view->messages = $this->flashMessenger->getMessages();
+
+        $user = Zend_Auth::getInstance()->getStorage()->read();
+        $this->user_id = $user->id;  //armazena o ID do usuario para todo o controller utilizar
+        
+        
+        $adsIds = new Application_Model_AdsMapper();
+        $this->ids_ads_by_user = $adsIds->selectIdsByUser( $this->user_id ); //ids de todos Ads do User
         
     }
 
@@ -30,8 +37,7 @@ class MeController extends Zend_Controller_Action
     	$page = $this->_getParam('page', 1);
     	
     	$model = new Application_Model_AdsMapper();
-    	$user = Zend_Auth::getInstance()->getStorage()->read();
-    	$ads = Zend_Paginator::factory ( $model->findAllAdsUser($user->id) );
+    	$ads = Zend_Paginator::factory ( $model->findAllAdsUser($this->user_id) );
     	$ads->setCurrentPageNumber ( $this->_getParam( 'page', 1 ) )
 	    	->setItemCountPerPage ( 5 )
 	    	->setPageRange(10);
@@ -68,11 +74,10 @@ class MeController extends Zend_Controller_Action
     				$thumb100px = new Application_View_Helper_EasyThumbnail($path.$newFilename, $path."/100px/".$newFilename, 100);
     				
     				// insert Ads
-    				$user = Zend_Auth::getInstance()->getStorage()->read();
-    				$id_ads = $mapper->save($ads, $user->id);
+    				$id_ads = $mapper->save($ads, $this->user_id);
     				
-    				$this->flashMessenger->addMessage("O anúncio foi criado com sucesso![[ {$id_ads} ]]");
-	    			$this->_helper->redirector->goToRoute( array('controller' => 'me', 'action'=> 'new-ads-photo', 'id' => $id_ads));
+    				$this->flashMessenger->addMessage("O anúncio foi criado com sucesso!");
+	    			$this->_helper->redirector->goToRoute( array('controller' => 'me', 'action'=> 'edit-ads', 'id' => $id_ads));
 	    			 
     			} catch (Exception $e) {
     				$this->flashMessenger->addMessage($e->getMessage());
@@ -105,22 +110,27 @@ class MeController extends Zend_Controller_Action
     	$this->view->form = $form;
     	*/
     	
-    	
     	$id_ads = $this->_getParam('id', '0');
     	
-    	$user = Zend_Auth::getInstance()->getStorage()->read();
-    	$id_user = $user->id;
-    	 
+    	if(!in_array($id_ads, $this->ids_ads_by_user))  //verifica se o ID do anuncio(ADS) pertence realmente ao USER
+    	{
+    		echo "Este anúncio não te pertence";
+    		exit;
+    	}
+    	
     	$adsModel = new Application_Model_DbTable_Ads();
     	$ads = $adsModel->fetchRow($adsModel->select()->where(
 										    			'id = ?', $id_ads,
-										    			'id_user = ?', $id_user 
+										    			'id_user = ?', $this->user_id 
 										    			));
     	//$ads = $adsModel->fetchRow("id = $id_ads");
-    	$images = $ads->findDependentRowset("Application_Model_DbTable_Images");
+    	//$images = $ads->findDependentRowset("Application_Model_DbTable_Images");
+    	$form = new Application_Form_AdsEdit();
+    	$form->populate($ads->toArray());
+    	$this->view->form = $form;
     	 
     	$this->view->ad = $ads;
-    	$this->view->images = $images;
+    	$this->view->images = $ads->findDependentRowset("Application_Model_DbTable_Images");
     }
 
 
@@ -130,6 +140,14 @@ class MeController extends Zend_Controller_Action
     {
     	$this->_helper->layout()->disableLayout();
     	$this->_helper->viewRenderer->setNoRender(true);
+    	
+    	
+    	if(!in_array($this->_getParam('ads', 0), $this->ids_ads_by_user))  //verifica se o ID do anuncio(ADS) pertence realmente ao USER
+    	{
+    		echo "Este anúncio não te pertence";
+    		exit;
+    	}
+    	 
     
     	if ($this->_request->isPost()) {
     		$msg = array();
@@ -137,69 +155,92 @@ class MeController extends Zend_Controller_Action
     		$path = APPLICATION_PATH . '/../public/ads-image/';
     		$valid_formats = array("jpg", "png", "JPG", "PNG", "jpeg", "JPEG");
     
-    		$qts = count($_FILES['photoimg']['name']);
+    		$qts = @count($_FILES['photoimg']['name']);
     
     		if($qts > 15){
-					$msg[] = array(
+    			$msg[] = array(
     					'status'	=>	'fail',
     					'url'		=>	null,
     					'msg'		=>	'Máximo de 15 imagens'
-    				);
+    			);
     		}else {
     
-	    		for($i=0; $i < $qts; $i++){
-	    				
-	    			$name = $_FILES ['photoimg']['name'][$i];
-	    			$tmp = $_FILES ['photoimg']['tmp_name'][$i];
-	    				
-	    			@list($txt, $ext) = explode(".", $name);
-	    			if(in_array($ext,$valid_formats))
-	    			{
-	    				$actual_image_name = uniqid()."_".str_replace(" ", "_", $txt).".".$ext;
-	    
-	    				if(move_uploaded_file($tmp, $path.$actual_image_name))
-	    				{
-	    					$imagesMapper = new Application_Model_ImagesMapper();
-	    					$imagesMapper->save($actual_image_name, $this->_getParam('ads', 0));   /************* VALIDAR O ID DO ANUNCIO, SE PERTENCE AO USUARIO QUE ESTA ENVIANDO O POST */
-	    					
-	    					$thumb500px = new Application_View_Helper_EasyThumbnail($path.$actual_image_name, $path.$actual_image_name, 500);
-	    					if ($thumb500px) {
-	    						$msg[] = array(
-	    								'status'	=>	'ok',
-	    								'url'		=>	$actual_image_name,
-	    								'msg'		=>	'Sucesso: '. $name
-	    								);
-	    						$thumb100px = new Application_View_Helper_EasyThumbnail($path.$actual_image_name, $path."/100px/".$actual_image_name, 100);
-	    					}else {
-	    						$msg[] = array(
-	    								'status'	=>	'fail',
-	    								'url'		=>	$actual_image_name,
-	    								'msg'		=>	$thumb500px->getErrorMsg()
-	    						);
-	    					}
-	    				}else {
-	    						$msg[] = array(
-	    								'status'	=>	'fail',
-	    								'url'		=>	null,
-	    								'msg'		=>	'Falha no envio de: '.$name
-	    						);
-	    				}
-	    			}else{
-						$msg[] = array(
-	    					'status'	=>	'fail',
-	    					'url'		=>	null,
-	    					'msg'		=>	'Formato Inválido: '.$name
-	    				);
-	    			}
-	    		 
-	    		}
+    			for($i=0; $i < $qts; $i++){
+    	    
+    				$name = $_FILES ['photoimg']['name'][$i];
+    				$tmp = $_FILES ['photoimg']['tmp_name'][$i];
+    	    
+    				@list($txt, $ext) = explode(".", $name);
+    				if(in_array($ext,$valid_formats))
+    				{
+    					$actual_image_name = uniqid()."_".str_replace(" ", "_", $txt).".".$ext;
+    					 
+    					if(move_uploaded_file($tmp, $path.$actual_image_name))
+    					{
+    						$imagesMapper = new Application_Model_ImagesMapper();
+    						$imagesMapper->save($actual_image_name, $this->_getParam('ads', 0));   /************* VALIDAR O ID DO ANUNCIO, SE PERTENCE AO USUARIO QUE ESTA ENVIANDO O POST */
+    
+    						$thumb500px = new Application_View_Helper_EasyThumbnail($path.$actual_image_name, $path.$actual_image_name, 500);
+    						if ($thumb500px) {
+    							$msg[] = array(
+    									'status'	=>	'ok',
+    									'url'		=>	$actual_image_name,
+    									'msg'		=>	'Sucesso: '. $name
+    							);
+    							$thumb100px = new Application_View_Helper_EasyThumbnail($path.$actual_image_name, $path."/100px/".$actual_image_name, 100);
+    						}else {
+    							$msg[] = array(
+    									'status'	=>	'fail',
+    									'url'		=>	$actual_image_name,
+    									'msg'		=>	$thumb500px->getErrorMsg()
+    							);
+    						}
+    					}else {
+    						$msg[] = array(
+    								'status'	=>	'fail',
+    								'url'		=>	null,
+    								'msg'		=>	'Falha no envio de: '.$name
+    						);
+    					}
+    				}else{
+    					$msg[] = array(
+    							'status'	=>	'fail',
+    							'url'		=>	null,
+    							'msg'		=>	'Formato Inválido: '.$name
+    					);
+    				}
+    
+    			}
     		}
-   
+    		 
     	}
     	$this->_helper->json($msg);
     }
     
+
+    public function deleteAdsAction()
+    {
+
+    	if(!in_array($this->_getParam('id', 0), $this->ids_ads_by_user))  //verifica se o ID do anuncio(ADS) pertence realmente ao USER
+    	{
+    		echo "Este anúncio não te pertence";
+    		exit;
+    	}
+
+    	try {
+	    	$adsMapper = new Application_Model_AdsMapper();
+	    	$adsMapper->deleteAds($this->_getParam('id', 0));
+	    	
+	    	$this->flashMessenger->addMessage("O anúncio foi deletado com sucesso!");
+	    	$this->_helper->redirector->goToRoute( array('controller' => 'me', 'action'=> 'my-ads'));
+    	} catch (Exception $e) {
+	    	$this->flashMessenger->addMessage("Falha ao deletar o anuncio!");
+	    	$this->_helper->redirector->goToRoute( array('controller' => 'me', 'action'=> 'edit-ads', 'id' => $this->_getParam('id', 0)));
+    	}
     
+    }
+    
+      
 }
 
 

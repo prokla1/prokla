@@ -95,6 +95,35 @@ class Application_Model_AdsMapper
 					->order(array('id DESC'));
 	}
 	
+
+
+	/**
+	 * Deleta o anuncio ADS, Cascate on Images
+	 * @return Ambigous <Zend_Db_Select, Zend_Db_Select>
+	 */
+	public function deleteAds($id_ads) {
+		return $this->getDbTable()->delete(array('id = ?' => $id_ads));
+	}
 	
+
+	/**
+	 * Retorna os IDs dos anuncios (Ads) do usuario
+	 * Usado para validacao, para ele nao poder editar outros anuncios
+	 * @param unknown_type $id_user
+	 * @return array Ids dos Ads do User
+	 */
+	public function selectIdsByUser($id_user){
+		$resultSet = $this->getDbTable()
+							->select()
+							->from('ads', array('id'))
+							->where('id_user = ?', $id_user);
+		
+		$rowSet = $this->getDbTable()->fetchAll($resultSet);
+		$result   = array();
+		foreach ($rowSet as $row) {
+			$result[] = $row->id;
+		}
+		return $result;
+	}
 }
 

@@ -23,7 +23,12 @@ $('#form_photo').ajaxForm({
 function processJson(data) { 
 	$.each(data, function(i, item){
 		if (item.status == 'ok') {
-			$('#ads-images').prepend('<img src="/ads-image/100px/'+ item.url +'" />');
+			var html = ' '  
+				+ '	<div class="ads_mold_img"> ' 
+				+ '		<img src="/ads-image/100px/' + item.url + '" /> ' 
+				+ '	</div> ' 
+				+ ' ';
+			$('#ads-images').prepend(html);
 		}
 		$('#status').prepend(item.msg + '<br />');
 
