@@ -1,9 +1,21 @@
 <?php $ad = $this->ad; ?>
 
-<?php print_r($ad)?>
 
 Titulo: <?php echo $ad->title?>
 <hr />
 Texto: <?php echo  $ad->title?>
 <hr />
-Foto: <img src="/ads-image/<?php echo $ad->image?>" />
+Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
+
+<pre>
+<?php //print_r($ad)?>
+</pre>
+<pre>
+<?php //print_r($this->images)?>
+</pre>
+
+<?php  foreach ($this->images as $image) :?>
+
+	<img src="/ads-image/100px/<?php echo $image->url?>" />
+
+<?php endforeach;?>

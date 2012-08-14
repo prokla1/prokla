@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_AdsNew extends Zend_Form
+class Application_Form_AdsEdit extends Zend_Form
 {
 
     public function init()
@@ -9,6 +9,14 @@ class Application_Form_AdsNew extends Zend_Form
         	->setAction('/me/new-ads')
         	->setMethod('post');
 
+
+        $id = new Zend_Form_Element_Hidden('id');
+        
+        $id_user = new Zend_Form_Element_Hidden('id_user');
+        
+        $created = new Zend_Form_Element_Hidden('created');
+         
+        
         $titulo = new Zend_Form_Element_Text('title');
         $titulo->setLabel('Titulo:')
 		        ->setRequired(true)
@@ -35,7 +43,6 @@ class Application_Form_AdsNew extends Zend_Form
 		        ->addFilter('pregReplace', array('match' => '/\s+/', 'replace' => ''))
 		        ->addFilter('LocalizedToNormalized')
 		        ->addValidator('stringLength', true, array(1, 12))
-		        ->addValidator('float', true, array('locale' => 'pt_BR'))
 		        ->addValidator('greaterThan', true, array('min' => 0));
         
         
@@ -50,7 +57,8 @@ class Application_Form_AdsNew extends Zend_Form
         		->setAttrib('id', 'submitbutton');
         
         
-        $this->addElements(array($titulo, $texto, $price, $image, $submit));
+        $this->addElements(array($titulo, $texto, $price, $image, $submit, $id, $id_user, $created));
+
     }
 
 

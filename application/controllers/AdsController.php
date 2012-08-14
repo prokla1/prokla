@@ -33,9 +33,14 @@ class AdsController extends Zend_Controller_Action
 
     public function showAction()
     {
+    	$id_ads = $this->_getParam('id', '0');
     	$ads = new Application_Model_AdsMapper();
     	$ad = new Application_Model_Ads();
-    	$this->view->ad = $ads->find($this->_getParam('id', '0'), $ad);
+    	$this->view->ad = $ads->find($id_ads, $ad);
+    	
+    	$images = new Application_Model_ImagesMapper();
+    	$this->view->images = $images->findAllImagesAds($id_ads);
+    	
     }
 
     public function searchAction()

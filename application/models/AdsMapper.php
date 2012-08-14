@@ -23,10 +23,11 @@ class Application_Model_AdsMapper
 	{
 		$url_image = $ads->getImage();
 		$data = array(
-				'text'		=> $ads->getText(),
-				'title'		=> $ads->getTitle(),
-				'id_user'	=> $id_user,
-				'image'		=> (empty($url_image)) ? 'null.jpg' : $ads->getImage(),
+				'text'		=>	$ads->getText(),
+				'title'		=>	$ads->getTitle(),
+				'id_user'	=>	$id_user,
+				'price'		=>	$ads->getPrice(),
+				'image'		=>	(empty($url_image)) ? 'null.jpg' : $ads->getImage(),
 		);
 		
 		// id == null -> insert
@@ -34,7 +35,7 @@ class Application_Model_AdsMapper
 			unset($data['id']);
 			return $this->getDbTable()->insert($data);
 		} else {
-			$this->getDbTable()->update($data, array('id = ?' => $id));
+			$this->getDbTable()->update($data, array('id = ?' => $ads->getId()));
 			return $ads->getId();
 		}
 	}

@@ -10,7 +10,11 @@
 <?php $ads = $this->paginator; ?>
 <ul>
 <?php foreach ($ads as $ad): ?>
-	<li> <?php echo $ad->title?>  - <?php echo $ad->text?> <hr /> </li>	
+	<li>
+	<a href="<?php echo $this->url(array('controller' => 'me', 'action'=> 'edit-ads', 'id' => $ad->id))?>">
+	Editar
+	</a>
+	 <?php echo $ad->title?>  - <?php echo $ad->text?> <hr /> </li>	
 <?php endforeach; ?>	
 </ul>
 <?php echo $ads ?>

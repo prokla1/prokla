@@ -8,8 +8,20 @@ class Application_Model_Ads
 	protected $_text;
 	protected $_price;
 	protected $_image;
+	protected $_created;
 	
 	
+	/**
+	 * Retorna os atributos protected em array
+	 * @return array dos valores protected
+	 */
+	public function getArray(){
+		$array = array();
+		foreach ($this as $key => $value) {
+			$array[substr($key, 1)] = $value;
+		}
+		return $array;
+	}
 
 	/**
 	 * metodo contrutor, chama a classe e envia um array com
@@ -135,6 +147,20 @@ class Application_Model_Ads
 	public function setImage($_image) {
 		$this->_image = $_image;
 	}
+	/**
+	 * @return the $_created
+	 */
+	public function getCreated() {
+		return $this->_created;
+	}
+
+	/**
+	 * @param field_type $_created
+	 */
+	public function setCreated($_created) {
+		$this->_created = $_created;
+	}
+
 
 
 

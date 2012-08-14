@@ -1,0 +1,36 @@
+
+<?php if (count($this->messages)) : ?>
+	<ul id="messages">
+	<?php foreach ($this->messages as $message) : ?>
+	    <li><?php echo $this->escape($message); ?></li>
+	<?php endforeach; ?>
+	</ul>
+<?php endif; ?>
+
+
+<?php $ad = $this->ad; ?>
+
+Titulo: <?php echo $ad->title ?>
+<hr />
+Texto: <?php echo $ad->text ?>
+<hr />
+Preço: <?php echo $ad->price ?>
+
+    <form enctype="multipart/form-data" method="post" action="/me/new-ads-photo-upload" id="form_photo">
+        <input type="file" name="photoimg[]" id="photoimg" multiple><br>
+        <input type="hidden" value="<?php echo $ad->id?>" name="ads">
+        <input type="submit" value="Enviar">
+    </form>
+    
+    <div class="progress">
+        <div class="bar"></div >
+        <div class="percent">0%</div >
+    </div>
+    
+    <div id="status"></div>
+
+<?php 
+	$this->headLink()->appendStylesheet('/css/user-photo.css');
+	$this->headScript()->prependFile($this->baseUrl('/js/user-photo.js'))
+						->prependFile($this->baseUrl('/js/jquery.form.js'));
+?>

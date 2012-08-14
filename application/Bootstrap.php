@@ -16,6 +16,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		Zend_Registry::set('logged',new Zend_Navigation($nav_logged));
 	}
 	
+	/* assim o library/Helpers/.. funciona
+	protected function _initAutoload()
+	{
+		$loader = Zend_Loader_Autoloader::getInstance();
+		$loader->setFallbackAutoloader(true);
+	}
+	*/
 	
 
 

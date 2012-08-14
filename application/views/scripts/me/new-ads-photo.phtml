@@ -1,4 +1,19 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Me</b> and script/action name <b>newAdsPhoto</b></p>
-</div>
+<h2>Adicione fotos extras ao seu anuncio</h2>
+<form enctype="multipart/form-data" method="post" action="/me/new-ads-photo-upload" id="form_photo">
+        <input type="file" name="photoimg[]" id="photoimg" multiple><br>
+        <input type="hidden" name="ads" value="<?php echo $this->ad->id?>">
+        <input type="submit" value="Enviar">
+    </form>
+    
+    <div class="progress">
+        <div class="bar"></div >
+        <div class="percent">0%</div >
+    </div>
+    
+    <div id="status"></div>
+
+<?php 
+	$this->headLink()->appendStylesheet('/css/user-photo.css');
+	$this->headScript()->prependFile($this->baseUrl('/js/user-photo.js'))
+						->prependFile($this->baseUrl('/js/jquery.form.js'));
+?>

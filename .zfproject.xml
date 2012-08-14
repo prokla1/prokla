@@ -21,6 +21,7 @@
           <actionMethod actionName="myAds"/>
           <actionMethod actionName="newAds"/>
           <actionMethod actionName="newAdsPhoto"/>
+          <actionMethod actionName="editAds"/>
         </controllerFile>
         <controllerFile controllerName="MyAd">
           <actionMethod actionName="index"/>
@@ -41,8 +42,10 @@
         <dbTableDirectory>
           <dbTableFile dbTableName="Users"/>
           <dbTableFile dbTableName="Ads"/>
+          <dbTableFile dbTableName="Images"/>
         </dbTableDirectory>
         <modelFile modelName="Ads"/>
+        <modelFile modelName="Images"/>
       </modelsDirectory>
       <viewsDirectory>
         <viewScriptsDirectory>
@@ -84,6 +87,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Ads">
             <viewScriptFile forActionName="search"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Me">
+            <viewScriptFile forActionName="editAds"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
