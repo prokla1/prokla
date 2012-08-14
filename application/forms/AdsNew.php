@@ -16,6 +16,10 @@ class Application_Form_AdsNew extends Zend_Form
 		        ->addValidator('NotEmpty')
 		        ->setAttrib('placeholder', 'Titulo')
 		        ->setAttrib('required name', 'title');
+
+        //$titulo->removeDecorator("HtmlTag");
+        //$titulo->removeDecorator("Label");
+        //$titulo->removeDecorator("Errors");
         
         
         $texto = new Zend_Form_Element_Textarea('text');
@@ -49,6 +53,7 @@ class Application_Form_AdsNew extends Zend_Form
 		$image->setLabel('Foto principal')
 				->setDestination(APPLICATION_PATH.'/../public/ads-image')
 				->setDescription('Em seguida poderá inserir mais fotos.');
+		$image->addValidator(new Zend_Validate_File_Extension(array('jpeg','jpg','gif','png')));
 		
 
         $submit = new Zend_Form_Element_Submit('submit');

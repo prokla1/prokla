@@ -38,10 +38,14 @@ class AdsController extends Zend_Controller_Action
     	$adsModel = new Application_Model_DbTable_Ads();
     	//$ads = $adsModel->fetchRow($adsModel->select()->where('id = ?', $id_ads));
     	$ads = $adsModel->fetchRow("id = $id_ads");
-    	$images = $ads->findDependentRowset("Application_Model_DbTable_Images");
+    	if (!$ads)
+    		return $this->_forward('search'); //redireciona internamente sem trocar a URL
+    		//return $this->_helper->redirector('search'); // redireciona pra outra URL
+    		
+    	//$images = $ads->findDependentRowset("Application_Model_DbTable_Images");
     	
     	$this->view->ad = $ads;
-    	$this->view->images = $images;
+    	$this->view->images = $ads->findDependentRowset("Application_Model_DbTable_Images");
     	
     	/*
     	$ads = new Application_Model_AdsMapper();

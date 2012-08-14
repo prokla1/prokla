@@ -32,7 +32,7 @@ class Application_Model_UserMapper
 
 			// is unique eamil?
 			if($this->isUniqueEmail($user->getEmail())){
-				$this->getDbTable()->insert($data);
+				return $this->getDbTable()->insert($data);
 			}
 			else {
 				throw new Exception('Este email já esta cadastrado.');
@@ -72,6 +72,7 @@ class Application_Model_UserMapper
 		}
 		$row = $result->current();
 		$user->setOptions($row->toArray());
+		//print_r($row->toArray());
 		return $user;
 	}	
 	

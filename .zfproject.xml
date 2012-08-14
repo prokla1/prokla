@@ -43,6 +43,10 @@
           <dbTableFile dbTableName="Users"/>
           <dbTableFile dbTableName="Ads"/>
           <dbTableFile dbTableName="Images"/>
+          <dbTableFile dbTableName="RegionCity"/>
+          <dbTableFile dbTableName="RegionCountry"/>
+          <dbTableFile dbTableName="RegionMicroregion"/>
+          <dbTableFile dbTableName="RegionState"/>
         </dbTableDirectory>
         <modelFile modelName="Ads"/>
         <modelFile modelName="Images"/>

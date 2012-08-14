@@ -27,8 +27,13 @@ class MeController extends Zend_Controller_Action
     public function indexAction()
     {
     	// captura o "user" salvo na session do Zend_Auth (session)
-    	$user = Zend_Auth::getInstance()->getStorage()->read();
-    	$this->view->user = $user;
+    	//$user = Zend_Auth::getInstance()->getStorage()->read();
+    	//$this->view->user = $user;
+    	
+    	/*Cria um novo modelo do usuario, atravez do ID que esta salvo na sessao*/
+    	$user = new Application_Model_UserMapper();
+    	$userModel = new Application_Model_User();
+    	$this->view->user = $user->find($this->user_id, $userModel);
 
     }
 

@@ -8,6 +8,21 @@ class Application_Model_User
 	protected $_password;
 
 
+
+
+	/**
+	 * Retorna os atributos protected em array
+	 * @return array dos valores protected
+	 */
+	public function getArray(){
+		$array = array();
+		foreach ($this as $key => $value) {
+			$array[substr($key, 1)] = $value;
+		}
+		return $array;
+	}
+	
+	
 	/**
 	 * metodo contrutor, chama a classe e envia um array com 
 	 * os dados, ex:  new User(array())

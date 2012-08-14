@@ -33,10 +33,14 @@ class UsersController extends Zend_Controller_Action
     			 
     			try {
     				// insert user
-    				$mapper->save($user);
+    				$id_user = $mapper->save($user); //salva o USER no banco e retorna o ID
+    				
+    				$user->setId($id_user); //seta o ID no objeto USER
+    				$auth = Zend_Auth::getInstance(); // traz a sessao do Zend_Auth
+    				$auth->getStorage()->write($user); // guarda o objeto USER na sessao
+    				
     				$this->view->message = "Usuário foi salvo com sucesso!";
     				$this->flashMessenger->addMessage("Usuário criado com sucesso!");
-    				$this->flashMessenger->addMessage("Faça seu login (depois ai direcionar direto)");
     				
     				return $this->_helper->redirector->goToRoute( array('controller' => 'me'), null, true);
 
