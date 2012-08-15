@@ -26,7 +26,7 @@ function processJson(data) {
 			var html = ' '  
 				+ '	<div class="ads_mold_img" id="image_' + item.id_image + '"> ' 
 				+ '		<img src="/ads-image/100px/' + item.url + '" /> ' 
-				+ '		<a href="javascript:adsImageDelete(\'' + item.id_image + '\');">Deletar</a> '
+				+ '		<a href="javascript:adsImageDelete(\'' + item.id_image + '\', \'' + item.url + '\');">Deletar</a> '
 				+ '	</div> ' 
 				+ ' ';
 			$('#ads-images').prepend(html);
@@ -38,13 +38,13 @@ function processJson(data) {
 
 })();       
 
-function adsImageDelete(idImage) {
+function adsImageDelete(idImage, urlImage) {
 	$.ajax({
 		url: "/me/delete-image-ads", 
 		type: "POST", 
 		dataType : "json", 
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-		data: {idImage: idImage},
+		data: {idImage: idImage, urlImage: urlImage},
 		success: function (r) {
 			console.log(r);
 			if (r.status == 'ok') { 

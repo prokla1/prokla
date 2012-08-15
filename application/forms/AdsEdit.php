@@ -30,7 +30,7 @@ class Application_Form_AdsEdit extends Zend_Form
         $texto->setLabel('Texto:')
               	->setRequired(true)
               	->addValidator('NotEmpty')
-				->addValidator('stringLength', true, array(0, 250))
+				->addValidator('stringLength', true, array(0, 1000))
 		        ->setAttribs(array(
 			        		'required name'	=>	'text', 
 			        		'placeholder'	=>	'Texto',
