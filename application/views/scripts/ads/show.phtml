@@ -1,60 +1,100 @@
 <?php $ad = $this->ad; ?>
 
+<!--  
 
-Titulo: <?php echo $ad->title?>
-<hr />
-Texto: <?php echo  $ad->title?>
-<hr />
 Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
+
+-->
 
 <?php  foreach ($this->images as $image) :?>
 
 	<img src="/ads-image/100px/<?php echo $image->url?>" />
 
 <?php endforeach;?>
-<!-- <?php print_r($ad)?>   Titulo:  Texto:  -->
+<!-- <?php print_r($ad)?>    -->
 
-<div style="float: left; border: 1px solid red;">
 
-<div style="margin-bottom: 10px; font-size: 12px">Denunciar abuso | Adicionar aos meus favoritos | Imprimir | Compartilhar</div>
+<!-- ADS - DESC - FILTER -->
 
-<div style="border: 1px solid #CCC; background-color: #fbfbfb; border-radius: 5px 5px 0 0; padding: 5px 0 5px 10px; display: table;	width: 590px;">
+<div style="width: 682px; float: left; margin-top: 100px;">
 
- <?php echo $ad->title?> 
+	<!-- BREADCRUMB E IMP -->
+	
+	<div style="width: 682px; display: table;">
+	
+		<div style="float: left;">breadcrumb</div>
+		<div style="float: right;">imprimir</div>
+	
+	</div>
+	
+	<!-- TITULO -->
+	
+	<div style="width: 640px; border: 1px solid #f0f0f0; background-color: #FFF; margin-top: 30px; border-radius: 10px 10px 0 0; padding: 15px 20px;"><?php echo $ad->title?></div>
+	
+	
+	<!-- GALERIA -->
+
+	<div style="width: 682px; height: 450px; background-color: #EFEFEF; margin-bottom: 20px;"></div>
+	
+
+	<!-- DESCRIÇÃO -->
+	
+	<div style="width: 450px; height: 200px; float: left;">
+	
+		<div>Descricao</div>
+		<div><?php echo $ad->text?></div>
+	</div>
+	
+	
+	<!-- TAGS FILTER -->
+	
+	<div style="width: 228px; height: 200px; float: left;">
+	
+		<div>Detalhes do anuncio:</div>
+		<div>Air Bag duplo</div>
+	</div>
 
 </div>
 
-<div style="width: 498px; height: 300px; border: 1px solid red; float: left;">
-<!--	<img src="/ads-image/<?php echo $ad->image?>" /> -->
+<!-- FINALIZA ADS - DESC - FILTER -->
+
+
+
+<!-- RIGHT -->
+
+<div style="width: 250px; float: right; margin-top: 100px;">
+
+	
+	<!-- CONTATO ANUNCIANTE -->
+	
+	<div style="background-color: #FFF1DD; border: 1px dotted #CCCCCC; padding: 20px 15px; color: black;">
+	
+		<ul>
+			<li style="padding-bottom: 10px;">Contacte o anunciante</li>
+			<li style="display: inline; font-size: 12px;">Anunciante: <li style="display: inline; font-size: 12px;">Pedro</li></li>
+			<li style="font-size: 12px;">+ ver todos anuncios do anunciante</li>
+			<li style="margin-top: 10px;">048 9615 8765</li>
+			<li style="margin-top: 10px;">Enviar mensagem</li>
+		</ul>
+	
+	</div>
+	
+	
+	<!-- MENU ANUNCIANTE -->
+	
+	<div style="margin-top: 10px;">
+		
+		<ul>
+			<li style="background-color: #990000; color: #FFF; border: 1px dotted #CCCCCC; margin-bottom: 5px; padding: 8px 10px;">Denunciar abuso</li>
+			<li style="background-color: #003366; color: #FFF; border: 1px dotted #CCCCCC; margin-bottom: 5px; padding: 8px 10px;">Compartilhar</li>
+			<li style="background-color: #FF9900; color: #FFF; border: 1px dotted #CCCCCC; margin-bottom: 5px; padding: 8px 10px;">Adicionar aos meus favoritos</li>
+		</ul>
+	
+	</div>
+	
 </div>
 
-<div style="float:left; border: 1px solid red; width: 100px; height: 300px;">MINI IMG</div>
-
-<!-- DESC -->
-
-<div><?php echo $ad->title?></div>
-
-
-</div>
-
-
-
-<div style="float: right; border: 1px solid red; width: 250px; height: 300px;">
-
-Detalhes anunciante:<hr />
-
-<ul>
-	<li>Anunciante: Joao</li>
-	<li>+ ver todos anuncios</li>
-	<li>Telefone</li>
-	<li>Enviar msg</li>
-
-</ul>
-
-</div>
-
-
-
+<!-- FINALIZA RIGHT -->
 
 
 
