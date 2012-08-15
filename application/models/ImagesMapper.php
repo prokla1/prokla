@@ -19,11 +19,13 @@ class Application_Model_ImagesMapper
 	 * @param Application_Model_Images $images
 	 * @throws Exception
 	 */
-	public function save($url, $id_ads)
+	public function save($url, $id_ads, $title, $description)
 	{
 		$data = array(
 				'id_ads'	=>	$id_ads,
 				'url'		=>	$url,
+				'title'		=>	$title,
+				'description'	=>	$description,
 				'status'	=>	'1'
 		);
 		return $this->getDbTable()->insert($data);
@@ -67,7 +69,40 @@ class Application_Model_ImagesMapper
 		}
 		return $result;
 	}
+
 	
+	/**
+	 * Deleta a imagem conforme o ID
+	 * @param unknown_type $id_image
+	 * @return number
+	 */
+	public function deleteImage($id_image) {
+		return $this->getDbTable()->delete(array('id = ?' => $id_image));;
+	}
+	
+	
+
+	/**
+	 * Retorna os IDs dos anuncios (Ads) para saber se a imagem pertence a um anuncio do usuario
+	 * @param unknown_type $id_user
+	 * @return array Ids dos Ads do User
+	 */
+	public function selectIdAds($id_image){
+		$resultSet = $this->getDbTable()
+				->select()
+				->from('images', array('id_ads'))
+				->where('id = ?', $id_image);
+	
+		$rowSet = $this->getDbTable()->fetchRow($resultSet); //fetchAll($resultSet);
+		/*print_r($rowSet);
+		exit;
+		
+		$result   = array();
+		foreach ($rowSet as $row) {
+			$result[] = $row->id;
+		}*/
+		return $rowSet;
+	}
 	
 }
 

@@ -20,12 +20,13 @@ $('#form_photo').ajaxForm({
     }
 }); 
 
-function processJson(data) { 
+function processJson(data) {
 	$.each(data, function(i, item){
 		if (item.status == 'ok') {
 			var html = ' '  
-				+ '	<div class="ads_mold_img"> ' 
+				+ '	<div class="ads_mold_img" id="image_' + item.id_image + '"> ' 
 				+ '		<img src="/ads-image/100px/' + item.url + '" /> ' 
+				+ '		<a href="javascript:adsImageDelete(\'' + item.id_image + '\');">Deletar</a> '
 				+ '	</div> ' 
 				+ ' ';
 			$('#ads-images').prepend(html);
@@ -34,4 +35,23 @@ function processJson(data) {
 
 	})
 }
+
 })();       
+
+function adsImageDelete(idImage) {
+	$.ajax({
+		url: "/me/delete-image-ads", 
+		type: "POST", 
+		dataType : "json", 
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		data: {idImage: idImage},
+		success: function (r) {
+			console.log(r);
+			if (r.status == 'ok') { 
+				$('#image_' + idImage).remove();
+				console.log('#image_' + idImage);
+			}
+			$('#status').prepend( r.msg + '<br/ >');
+		}
+	})	
+}

@@ -31,8 +31,9 @@ Preço: <?php echo $this->form->price ?>
 
     <div id="ads-images">
 	<?php  foreach ($this->images as $image) :?>
-		<div class="ads_mold_img">
+		<div class="ads_mold_img" id="image_<?php echo $image->id?>" >
 			<img src="/ads-image/100px/<?php echo $image->url?>" />
+			<a href="javascript:adsImageDelete('<?php echo $image->id?>');">Deletar</a>
 		</div>
 	<?php endforeach;?>
 	</div>

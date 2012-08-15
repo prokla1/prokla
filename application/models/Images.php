@@ -5,6 +5,8 @@ class Application_Model_Images
 	protected $_id;
 	protected $_id_ads;
 	protected $_url;
+	protected $_title;
+	protected $_description;
 	protected $_status;
 
 
@@ -102,6 +104,36 @@ class Application_Model_Images
 	 */
 	public function setUrl($_url) {
 		$this->_url = $_url;
+	}
+
+	
+	
+	/**
+	 * @return the $_title
+	 */
+	public function getTitle() {
+		return $this->_title;
+	}
+
+	/**
+	 * @param field_type $_title
+	 */
+	public function setTitle($_title) {
+		$this->_title = $_title;
+	}
+
+	/**
+	 * @return the $_description
+	 */
+	public function getDescription() {
+		return $this->_description;
+	}
+
+	/**
+	 * @param field_type $_description
+	 */
+	public function setDescription($_description) {
+		$this->_description = $_description;
 	}
 
 	/**

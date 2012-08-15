@@ -172,8 +172,8 @@ class MeController extends Zend_Controller_Action
     
     			for($i=0; $i < $qts; $i++){
     	    
-    				$name = $_FILES ['photoimg']['name'][$i];
-    				$tmp = $_FILES ['photoimg']['tmp_name'][$i];
+    				$name = $_FILES['photoimg']['name'][$i];
+    				$tmp = $_FILES['photoimg']['tmp_name'][$i];
     	    
     				@list($txt, $ext) = explode(".", $name);
     				if(in_array($ext,$valid_formats))
@@ -183,13 +183,18 @@ class MeController extends Zend_Controller_Action
     					if(move_uploaded_file($tmp, $path.$actual_image_name))
     					{
     						$imagesMapper = new Application_Model_ImagesMapper();
-    						$imagesMapper->save($actual_image_name, $this->_getParam('ads', 0));   /************* VALIDAR O ID DO ANUNCIO, SE PERTENCE AO USUARIO QUE ESTA ENVIANDO O POST */
+    						
+    						$ads = $this->_getParam('ads', 0);
+    						$title = $this->_getParam('tile', '');
+    						$description = $this->_getParam('description', '');
+    						$id_image = $imagesMapper->save($actual_image_name, $ads, $title, $description);   /************* VALIDAR O ID DO ANUNCIO, SE PERTENCE AO USUARIO QUE ESTA ENVIANDO O POST */
     
     						$thumb500px = new Application_View_Helper_EasyThumbnail($path.$actual_image_name, $path.$actual_image_name, 500);
     						if ($thumb500px) {
     							$msg[] = array(
     									'status'	=>	'ok',
     									'url'		=>	$actual_image_name,
+    									'id_image'	=>	$id_image,
     									'msg'		=>	'Sucesso: '. $name
     							);
     							$thumb100px = new Application_View_Helper_EasyThumbnail($path.$actual_image_name, $path."/100px/".$actual_image_name, 100);
@@ -221,8 +226,39 @@ class MeController extends Zend_Controller_Action
     	}
     	$this->_helper->json($msg);
     }
-    
 
+    
+    public function deleteImageAdsAction()
+    {
+    	$id_image = $this->_getParam('idImage', 0);
+    	$imageMapper = new Application_Model_ImagesMapper();
+    	
+    	$id_ads = $imageMapper->selectIdAds($id_image); // pega o ID do anuncio desta imagem, para garantir que nao delete outra imagem
+    	if(!in_array($id_ads->id_ads, $this->ids_ads_by_user))  //verifica se o ID do anuncio(ADS) pertence realmente ao USER
+    	{
+    		echo "Este anúncio não te pertence";
+    		exit;
+    	}
+    	$msg = array();
+    	
+    	try {
+	    	$imageMapper->deleteImage($id_image);
+	    	$msg = array(
+	    			'status'	=>	'ok',
+	    			'msg'		=>	'Deletado com sucesso'
+	    	);
+    	} catch (Exception $e) {
+    		$msg = array(
+    				'status'	=>	'fail',
+    				'msg'		=>	$e->getMessage()
+    		);
+    	}
+    	$this->_helper->json($msg);
+    	 
+    }
+
+    
+    
     public function deleteAdsAction()
     {
 
