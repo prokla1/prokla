@@ -36,11 +36,13 @@ echo 	$this->headMeta(),PHP_EOL;
 		<div id="top_menu"><!-- [start] top_menu -->
 			<div class="top_home">
 				<a title="Página Inicial" class="home" href="/">Início</a>
+				<a href="?l=pt_BR">[pt]</a>
+				<a href="?l=en">[en]</a>
 			</div>
 			<div class="top_menus"">
 				<?php 
 				if ( !Zend_Auth::getInstance()->hasIdentity() ){ 
-					echo $this->navigation()->menu()->renderMenu(Zend_Registry::get('default'));
+					echo $this->navigation()->setTranslator(Zend_Registry::get('Zend_Translate'))->menu()->renderMenu(Zend_Registry::get('default'));
 				}else {
 					echo $this->navigation()->menu()->renderMenu(Zend_Registry::get('logged'));
 					}

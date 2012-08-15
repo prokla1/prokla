@@ -15,7 +15,7 @@ $pages = array(
 				'controller' 	=> 	'users',
 				'action'		=> 	'create',
 				'class'			=>	'menu_top',
-				'title'			=>	'Cadastre-se',
+				'title'			=>	'Cadastrar',
 	        ),
 			array(
 				'label' 		=> 	'Login',
