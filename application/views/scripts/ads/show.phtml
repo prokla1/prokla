@@ -98,17 +98,27 @@ Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
 	
 	<div style="width: 450px; height: 200px; float: left;">
 	
-		<div>Descricao</div>
-		<div><?php echo $ad->text?></div>
+		<div style="margin-top: 10px;">Descricao:</div>
+		<div style="background-color: #FFF; border: 1px dotted #CCC; padding: 5px; width: 420px;"><?php echo $ad->text?></div>
+		
 	</div>
 	
 	
 	<!-- TAGS FILTER -->
 	
-	<div style="width: 228px; height: 200px; float: left;">
+	<div style="width: 228px; height: 200px; float: left; margin-top: 10px;">
 	
 		<div>Detalhes do anuncio:</div>
-		<div>Air Bag duplo</div>
+		
+		<div>
+			<ul>
+				<li style="background-color: #FFF; padding: 5px 5px; margin-bottom: 2px; border: 1px dotted #CCC;"><span style="margin-right: 4px;">Marca:</span>huhu</li>
+				<li style="background-color: #FFF; padding: 5px 5px; margin-bottom: 2px; border: 1px dotted #CCC;"><span style="margin-right: 4px;">Modelo:</span>huhu</li>
+				<li style="background-color: #FFF; padding: 5px 5px; margin-bottom: 2px; border: 1px dotted #CCC;"><span style="margin-right: 4px;">Ano:</span>huhu</li>
+				<li style="background-color: #FFF; padding: 5px 5px; margin-bottom: 2px; border: 1px dotted #CCC;"><span style="margin-right: 4px;">Tipo:</span>huhu</li>
+			</ul>
+		</div>
+	
 	</div>
 
 </div>
@@ -119,21 +129,29 @@ Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
 
 <!-- RIGHT -->
 
-<div style="width: 250px; float: right; margin-top: 100px;">
+<div style="width: 250px; float: right; margin-top: 200px;">
 
 	
 	<!-- CONTATO ANUNCIANTE -->
 	
-	<div style="background-color: #FFF1DD; border: 1px dotted #CCCCCC; padding: 20px 15px; color: black;">
+	<div style="background-color: #FFF1DD; border: 1px dotted #CCCCCC; padding: 10px 15px; color: black;">
 	
-		<ul>
-			<li style="padding-bottom: 10px;">Contacte o anunciante</li>
-			<li style="display: inline; font-size: 12px;">Anunciante: <span>Pedro</span></li>
-			<li style="font-size: 12px;">+ ver todos anuncios do anunciante</li>
-			<li style="margin-top: 10px;">048 9615 8765</li>
-			<li style="margin-top: 10px;">Enviar mensagem</li>
-		</ul>
-	
+			<div style="margin-bottom: 15px;">Contacte o anunciante</div>
+			
+			<div style="margin-bottom: 20px;">
+				<ul>
+					<li>Anunciante: <span>Pedro</span></li>
+					<li style="font-size: 12px;">+ ver todos anuncios do anunciante</li>
+				</ul>
+			</div>
+			
+			<div style="margin: 0 auto; display: table; margin-bottom: 20px;">
+				<ul>
+					<li style="margin-bottom: 20px;">... 048 9615 8765</li>
+					<li>... Enviar mensagem</li>
+				</ul>
+			</div>
+		
 	</div>
 	
 	
