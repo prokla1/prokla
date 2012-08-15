@@ -3,6 +3,43 @@
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 
+	/**
+	 * Sistema de tradução
+	 */
+	protected function _initTranslate()
+	{
+		// Get Locale
+		$locale = new Zend_Locale(Zend_Locale::BROWSER); //Zend_Registry::get('Zend_Locale');
+		
+		$translate = new Zend_Translate(
+				array(
+						'adapter' => 'array',
+						'content' => APPLICATION_PATH . '/languages/' . $locale . '/arrays.php',
+						'locale'  => $locale,
+				)
+		);	
+
+		/*
+		// Set up ZF's translations for validation messages.
+		$translate_msg = new Zend_Translate(
+				array(
+						'adapter' => 'array',
+						'content' => APPLICATION_PATH . '/languages/' . $locale . '/Zend_Validate.php',
+						'locale' => $locale
+						)
+		);
+		
+		// Add translation of validation messages
+		$translate->addTranslation($translate_msg);
+		Zend_Form::setDefaultTranslator($translate);
+		*/
+		
+		
+		// Save it for the rest of application to use
+		Zend_Registry::set('Zend_Translate', $translate);
+	}
+	
+	
 	
 	/**
 	 * cria o navigation, menu de navegação conforme os arquivos que contem os arrays() dos links
