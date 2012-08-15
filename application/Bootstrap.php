@@ -8,8 +8,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	 */
 	protected function _initTranslate()
 	{
-		// Get Locale
-		$locale = new Zend_Locale(Zend_Locale::BROWSER); //Zend_Registry::get('Zend_Locale');
+		$languages = array('en', 'pt_BR');
+		$local_session = new Zend_Session_Namespace();
+		if (isset($_GET['l']) && in_array($_GET['l'], $languages)) {
+			$locale = new Zend_Locale($_GET['l']); 
+			$local_session->locale = $_GET['l']; 
+		} else if (empty($local_session->locale)){
+			try {
+		    	$locale = new Zend_Locale('browser');
+				//$locale = new Zend_Locale(Zend_Locale::BROWSER); //Zend_Registry::get('Zend_Locale');
+		  	} catch (Zend_Locale_Exception $e) {
+		    	$locale = new Zend_Locale('en');  
+		  	}
+		} else {
+			$locale = new Zend_Locale($local_session->locale);
+		}
 		
 		$translate = new Zend_Translate(
 				array(
@@ -18,8 +31,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 						'locale'  => $locale,
 				)
 		);	
-
-		/*
+		
 		// Set up ZF's translations for validation messages.
 		$translate_msg = new Zend_Translate(
 				array(
@@ -32,8 +44,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		// Add translation of validation messages
 		$translate->addTranslation($translate_msg);
 		Zend_Form::setDefaultTranslator($translate);
-		*/
-		
 		
 		// Save it for the rest of application to use
 		Zend_Registry::set('Zend_Translate', $translate);
@@ -47,11 +57,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	protected function _initNavigation()
 	{
 		$nav_default = new Zend_Config(require(APPLICATION_PATH . '/layouts/navigation/default.php'));// read in the array menu
-		Zend_Registry::set('default',new Zend_Navigation($nav_default));// initialize the navigation object with the array
+		$navigation_default = new Zend_Navigation($nav_default);
+		Zend_Registry::set('default',$navigation_default);// initialize the navigation object with the array
 	
 		$nav_logged = new Zend_Config(require(APPLICATION_PATH . '/layouts/navigation/logged.php'));
 		Zend_Registry::set('logged',new Zend_Navigation($nav_logged));
 	}
+	
+	
 	
 	/* assim o library/Helpers/.. funciona
 	protected function _initAutoload()
