@@ -1,7 +1,4 @@
-<h2>Novo Anúncio</h2>
-
-
-<?php if (count($this->messages)) : ?>
+<!--<?php if (count($this->messages)) : ?>
 	<ul id="messages">
 	<?php foreach ($this->messages as $message) : ?>
 	    <li><?php echo $this->escape($message); ?></li>
@@ -16,8 +13,56 @@ if ($this->message)
 
 	echo $this->form;
 ?>
+-->
+
+<!-- CONTAINER -->
+
+<div style="border: 1px solid red;">
+
+	<div style="border: 1px solid yellow; width: 250px; margin-bottom: 20px;">1 PASSO (Informacoes do anuncio)</div>
+
+	<div style="border: 1px solid blue; display: table; width: 100%;">
+		
+		<div style="border: 1px solid yellow; width: 500px; height: 400px; float: left;">
+		
+
+		input
+		
+		</div>
+		
+		<div style="border: 1px solid yellow; width: 400px; height: 400px; float: right;">
+		
+			RIGHT
+		
+		</div>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div style="border: 1px solid red;">FILTRO</div>
+
+</div>
+
+<!-- FINALIZA CONTAINER -->
+
+
+
+
+
+<?php 
+	$this->headLink()
+	->prependStylesheet($this->baseUrl('/css/jqf1.css'));
+?>
+
 
 <?php 
 	$this->headScript()->setSeparator(PHP_EOL)
-		->prependFile($this->baseUrl('/js/jquery.placeholder.min.js'));
+		->prependFile($this->baseUrl('/js/jqf1.portugues.js'))
+		->prependFile($this->baseUrl('/js/inputs_form.js'));
 ?>
+
