@@ -60,13 +60,11 @@ Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
         
         	
         	<?php  foreach ($this->images as $image) :?>
-				
-			<a href="/ads-image/<?php echo $image->url?>">
-                <img data-title="<?php //echo $image->title?>"
-                     data-description="<?php //echo $image->description?>"
-                     src="/ads-image/100px/<?php echo $image->url?>">
-            </a>
-			
+				<a href="/ads-image/<?php echo $image->url?>">
+	                <img data-title="<?php //echo $image->title?>"
+	                     data-description="<?php //echo $image->description?>"
+	                     src="/ads-image/100px/<?php echo $image->url?>">
+	            </a>
 			<?php endforeach;?>
         	
         	
@@ -158,7 +156,18 @@ Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
 		
 		<ul>
 			<li style="background-color: #990000; color: #FFF; border: 1px dotted #CCCCCC; margin-bottom: 5px; padding: 8px 10px;">Denunciar abuso</li>
-			<li style="background-color: #003366; color: #FFF; border: 1px dotted #CCCCCC; margin-bottom: 5px; padding: 8px 10px;">Compartilhar</li>
+			<li style="background-color: #003366; color: #FFF; border: 1px dotted #CCCCCC; margin-bottom: 5px; padding: 8px 10px;">
+			<!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+				<a class="addthis_button_facebook" style="cursor:pointer"></a>
+				<a class="addthis_button_twitter" style="cursor:pointer"></a>
+				<a class="addthis_button_google_plusone_share" style="cursor:pointer"></a>
+				<a class="addthis_button_email" style="cursor:pointer"></a>
+				<a class="addthis_button_print"></a>
+				<a class="addthis_button_compact"></a>
+			</div>
+			<!-- AddThis Button END -->
+			</li>
 			<li style="background-color: #FF9900; color: #FFF; border: 1px dotted #CCCCCC; margin-bottom: 5px; padding: 8px 10px;">Adicionar aos meus favoritos</li>
 		</ul>
 	
@@ -168,18 +177,21 @@ Foto Principal: <img src="/ads-image/<?php echo $ad->image?>" />
 
 <!-- FINALIZA RIGHT -->
 
-
-
+	<!-- tags Social -->	
+		<meta property="og:title" content="Prokla.dev - <?php echo $ad->title?>" />
+		<meta property="og:image" content="<?php echo $ad->image?>" />
+		<meta property="og:description" content="<?php echo $ad->text?>" />
+	 
 
 <?php 
 	$this->headScript()->setSeparator(PHP_EOL)
+		->prependFile('http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-502c11e25f13c2b0')
 		->prependFile($this->baseUrl('/js/show.js'))
 		->prependFile($this->baseUrl('/js/galleria-1.2.8.min.js'));
 
-?>
-
-<?php 
 	$this->headLink()
-	->prependStylesheet($this->baseUrl('/css/ads_show.css'))
-	->prependStylesheet($this->baseUrl('/css/galleria.classic.css'));
+		->prependStylesheet($this->baseUrl('/css/ads_show.css'))
+		->prependStylesheet($this->baseUrl('/css/galleria.classic.css'));
+	
+
 ?>
