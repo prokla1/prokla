@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 15/08/2012 às 15h33min
+-- Tempo de Geração: 17/08/2012 às 22h00min
 -- Versão do Servidor: 5.1.63
 -- Versão do PHP: 5.3.14
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_ads` (`id_ads`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=131 ;
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,14 @@ CREATE TABLE IF NOT EXISTS `region_city` (
   `status` enum('0','1') NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_state` (`id_state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `region_city`
+--
+
+INSERT INTO `region_city` (`id`, `id_state`, `id_microregion`, `name`, `acronym`, `status`) VALUES
+(1, 24, 56, 'Florianópolis', 'Fpolis', '1');
 
 -- --------------------------------------------------------
 
@@ -89,14 +96,15 @@ CREATE TABLE IF NOT EXISTS `region_country` (
   `acronym` varchar(10) NOT NULL,
   `status` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0-> Desativado  ||  1-> Ativado',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `region_country`
 --
 
 INSERT INTO `region_country` (`id`, `name`, `acronym`, `status`) VALUES
-(1, 'Brasil', 'BR', '1');
+(1, 'Brasil', 'BR', '1'),
+(2, 'Argentina', 'AR', '1');
 
 -- --------------------------------------------------------
 
@@ -251,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Restrições para as tabelas dumpadas
