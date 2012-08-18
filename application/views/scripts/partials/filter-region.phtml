@@ -1,0 +1,46 @@
+<div id="filter-region-container">
+
+	<div id="div-region-country" class="div-select-region select-modal" style="display: block;">
+		<?php echo $this->translate('Pais')?>:
+		<select name="region-country" id="region-country" class="select-onchange" >
+			<option value="1" data-imagesrc="/img/flags/1.png" data-description="BR" >Brasil</option>
+		</select>
+	</div>
+
+	<div id="div-region-state" class="div-select-region select-modal" >
+		<?php echo $this->translate('Estado')?>:
+		<select name="region-state" id="region-state" class="select-onchange" >
+			<option value="0"  ><?php echo $this->translate('Estado')?>:</option>
+			<option value="1"  >Santa Catarina</option>
+		</select>
+	</div>
+	
+	<div id="div-region-microregion" class="div-select-region select-modal" >
+		<?php echo $this->translate('Região')?>:
+		<select name="region-microregion" id="region-microregion" class="select-onchange"  >
+			<option value="0"  ><?php echo $this->translate('Região')?>:</option>
+			<option value="1"  >48</option>
+		</select>
+	</div>
+	
+	
+	<div id="div-region-city" class="div-select-region select-modal" >
+		<?php echo $this->translate('Cidade')?>:
+		<select name="region-city" id="region-city" >
+			<option value="0"  ><?php echo $this->translate('Cidade')?>:</option>
+			<option value="1"  >Floripa</option>
+		</select>
+	</div>
+	
+	
+</div>
+
+
+<?php 
+	$this->headScript()->setSeparator(PHP_EOL)
+		->prependFile($this->baseUrl('/js/partials/filter-region.js'))
+		->prependFile($this->baseUrl('/js/jquery.dropdown.js'));
+
+	$this->headLink()
+		->prependStylesheet($this->baseUrl('/css/partials/filter-region.css'));
+?>

@@ -32,6 +32,9 @@
           <actionMethod actionName="show"/>
           <actionMethod actionName="search"/>
         </controllerFile>
+        <controllerFile controllerName="FilterRegion">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="UserCreate"/>
@@ -94,6 +97,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Me">
             <viewScriptFile forActionName="editAds"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="FilterRegion">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

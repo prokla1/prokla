@@ -3,6 +3,17 @@ return array(
 		'Bem vindo'	=>	'Welcome',
 		'Exemplo' => 'Sample',
 		'Texto 2' => 'Text two',
+		'Selecione'	=>	'Select',
+		
+
+		'Busca'	=>	'Search',
+
+		'Pais'	=>	'Country',
+
+		'Estado'	=>	'State',
+		'Região'	=>	'Provinci',
+
+		'Cidade'	=>	'City',
 		
 
 		'Login'				=>	'Login',
