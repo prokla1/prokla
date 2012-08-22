@@ -1,8 +1,17 @@
 @CHARSET "UTF-8";
 
 .div-select-region{
-	display: none;
+/* 	display: none; */
+	margin: 2px;
+	font-size: 14px;
 }
+
+.div-select-region select{
+	margin: 2px;
+	padding: 5px;
+	font-size: 14px;
+}
+
 
 .select-modal{
 	

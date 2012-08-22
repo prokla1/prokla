@@ -35,6 +35,9 @@
         <controllerFile controllerName="FilterRegion">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Categories">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="UserCreate"/>
@@ -50,6 +53,9 @@
           <dbTableFile dbTableName="RegionCountry"/>
           <dbTableFile dbTableName="RegionMicroregion"/>
           <dbTableFile dbTableName="RegionState"/>
+          <dbTableFile dbTableName="CategoryName"/>
+          <dbTableFile dbTableName="CategoryAttributesName"/>
+          <dbTableFile dbTableName="CategoryAttributesOptions"/>
         </dbTableDirectory>
         <modelFile modelName="Ads"/>
         <modelFile modelName="Images"/>
@@ -99,6 +105,9 @@
             <viewScriptFile forActionName="editAds"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="FilterRegion">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Categories">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

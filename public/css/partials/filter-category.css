@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+
+#filter-category{
+	
+}
+
+#filter-category ul{
+}
+#filter-category ul li{
+	border: 1px solid #CCC;
+	padding: 5px;
+	cursor: pointer;
+}

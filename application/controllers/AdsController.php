@@ -64,11 +64,8 @@ class AdsController extends Zend_Controller_Action
 
     public function searchAction()
     {
-        // action body
-        
-    	$region = array();
-    	$region['country'] = ('Brasil');
-    	$this->view->region = $region;
+    	//$categories = new Application_Model_DbTable_CategoryName();
+    	//$this->view->categories = $categories->getCategories();
     }
 
 

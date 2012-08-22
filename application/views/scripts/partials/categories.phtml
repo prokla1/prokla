@@ -1,0 +1,35 @@
+
+
+
+
+
+<?php 
+	$categories = new Application_Model_DbTable_CategoryName();
+	echo getHtmlMenu($categories->getCategories());
+
+	function getHtmlMenu($array)
+	{
+		$html = '<ul class="primary-nav">';
+		foreach ($array as $categoria)
+		{
+			if(count($categoria['subs']) > 0){
+				$html .= '<li class="menuparent"><a href="">'. $categoria['name'] .'</a>';
+				$html .= getHtmlMenu($categoria['subs']);
+			}else {
+				$html .= '<li><a href="">'. $categoria['name'] .'</a>';
+			}
+			$html .= '</li>';
+		}
+		$html .= '</ul>';
+		return $html;
+	}
+?>
+
+
+<?php 
+	$this->headScript()->setSeparator(PHP_EOL)
+		->prependFile($this->baseUrl('/js/partials/categories.js'));;
+
+	$this->headLink()
+		->prependStylesheet($this->baseUrl('/css/partials/categories.css'));
+?>

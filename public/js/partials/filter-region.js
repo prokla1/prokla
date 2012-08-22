@@ -31,10 +31,14 @@ $(document).ready(function(){
 				$('#div-' + data.destiny).show();
 			}
 				
-		});		
+		});	
 	});
 	
-	$('#region-country').change();  //inicia a função change no select
+	//$('#region-country').change();  //inicia a função change no select
+	
+
+
+
 	
 	
 });
