@@ -1,6 +1,53 @@
 $(document).ready(function(){
 	
+
+
+
+	function populate(selector, values) {
+		selector.empty();
+		$(selector)
+   	 		.append($("<option></option>")
+   			 .attr("value",'0')
+   			 .text('Selecione')); 		
+		$.each(values, function(key, value) {
+		    	 $(selector)
+		    	 .append($("<option></option>")
+		    			 .attr("value",value.id)
+		    			 .text(value.name)); 
+		});
+		
+		$('#selects-categories').append(selector);
+	}
+
+	populate($('#categories_0'), category[0]);
+	$('#categories_0').change();  //inicia a função change no select
 	
+	
+	
+
+	$('.onchange-category').live('change', function () {
+		var i = 0;
+		var id =  $("option:selected", this).val();
+		console.log("id:"+id);
+		var values = category[id];
+		
+//			if(values){
+//			}else{
+				for (i=10; i>id; i--) {
+					$('#categories_'+i).remove();
+					console.log(i);
+				}
+				if(values){
+					var selected = $("<select></select>");
+					selected.attr("id","categories_"+id);
+					selected.attr("class","onchange-category");
+					populate(selected, values);
+				}
+//			}
+
+	});
+
+	/*
 	$('.li_category').live('click',function(){
 		var id = $(this).attr('rel');
 		console.log('id:'+id);
@@ -46,5 +93,5 @@ $(document).ready(function(){
 		});	
 	});
 		
-	
+*/	
 });

@@ -1,15 +1,16 @@
 <?php
 
-class Application_Model_Ads
+class Application_Model_AdsImages
 {
 	protected $_id;
-	protected $_id_user;
+	protected $_id_ads;
+	protected $_cover;
+	protected $_url;
 	protected $_title;
-	protected $_text;
-	protected $_price;
-	protected $_created;
-	
-	
+	protected $_description;
+	protected $_status;
+
+
 	/**
 	 * Retorna os atributos protected em array
 	 * @return array dos valores protected
@@ -21,10 +22,11 @@ class Application_Model_Ads
 		}
 		return $array;
 	}
-
+	
+	
 	/**
 	 * metodo contrutor, chama a classe e envia um array com
-	 * os dados, ex:  new Ads(array())
+	 * os dados, ex:  new User(array())
 	 * @param array $options
 	 */
 	public function __construct(array $options = null)
@@ -38,7 +40,7 @@ class Application_Model_Ads
 	{
 		$method = 'set' . $name;
 		if (('mapper' == $name) || !method_exists($this, $method)) {
-			throw new Exception("Invalid Ads property {$name}");
+			throw new Exception("Invalid Image property {$name}");
 		}
 		$this->$method($value);
 	}
@@ -47,7 +49,7 @@ class Application_Model_Ads
 	{
 		$method = 'get' . $name;
 		if (('mapper' == $name) || !method_exists($this, $method)) {
-			throw new Exception("Invalid Ads property {$name}");
+			throw new Exception("Invalid Image property {$name}");
 		}
 		return $this->$method();
 	}
@@ -63,8 +65,6 @@ class Application_Model_Ads
 		}
 		return $this;
 	}
-	
-	
 	/**
 	 * @return the $_id
 	 */
@@ -80,19 +80,49 @@ class Application_Model_Ads
 	}
 
 	/**
-	 * @return the $_id_user
+	 * @return the $_id_ads
 	 */
-	public function getId_user() {
-		return $this->_id_user;
+	public function getId_ads() {
+		return $this->_id_ads;
 	}
 
 	/**
-	 * @param field_type $_id_user
+	 * @param field_type $_id_ads
 	 */
-	public function setId_user($_id_user) {
-		$this->_id_user = $_id_user;
+	public function setId_ads($_id_ads) {
+		$this->_id_ads = $_id_ads;
 	}
 
+	/**
+	 * @return the $_cover
+	 */
+	public function getCover() {
+		return $this->_cover;
+	}
+
+	/**
+	 * @param field_type $_cover
+	 */
+	public function setCover($_cover) {
+		$this->_cover = $_cover;
+	}
+
+	/**
+	 * @return the $_url
+	 */
+	public function getUrl() {
+		return $this->_url;
+	}
+
+	/**
+	 * @param field_type $_url
+	 */
+	public function setUrl($_url) {
+		$this->_url = $_url;
+	}
+
+	
+	
 	/**
 	 * @return the $_title
 	 */
@@ -108,62 +138,33 @@ class Application_Model_Ads
 	}
 
 	/**
-	 * @return the $_text
+	 * @return the $_description
 	 */
-	public function getText() {
-		return $this->_text;
+	public function getDescription() {
+		return $this->_description;
 	}
 
 	/**
-	 * @param field_type $_text
+	 * @param field_type $_description
 	 */
-	public function setText($_text) {
-		$this->_text = $_text;
-	}
-	/**
-	 * @return the $_price
-	 */
-	public function getPrice() {
-		return $this->_price;
+	public function setDescription($_description) {
+		$this->_description = $_description;
 	}
 
 	/**
-	 * @param field_type $_price
+	 * @return the $_status
 	 */
-	public function setPrice($_price) {
-		$this->_price = $_price;
-	}
-	/**
-	 * @return the $_image
-	 */
-	public function getImage() {
-		return $this->_image;
+	public function getStatus() {
+		return $this->_status;
 	}
 
 	/**
-	 * @param field_type $_image
+	 * @param field_type $_status
 	 */
-	public function setImage($_image) {
-		$this->_image = $_image;
+	public function setStatus($_status) {
+		$this->_status = $_status;
 	}
-	/**
-	 * @return the $_created
-	 */
-	public function getCreated() {
-		return $this->_created;
-	}
-
-	/**
-	 * @param field_type $_created
-	 */
-	public function setCreated($_created) {
-		$this->_created = $_created;
-	}
-
-
-
 
 	
-
 }
 

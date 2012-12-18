@@ -45,7 +45,7 @@ class AdsController extends Zend_Controller_Action
     	//$images = $ads->findDependentRowset("Application_Model_DbTable_Images");
     	
     	$this->view->ad = $ads;
-    	$this->view->images = $ads->findDependentRowset("Application_Model_DbTable_Images");
+    	$this->view->images = $ads->findDependentRowset("Application_Model_DbTable_AdsImages");
     	
     	/*
     	$ads = new Application_Model_AdsMapper();

@@ -25,7 +25,7 @@ $(document).ready(function(){
 			populate($('#'+data.destiny), data.values)
 			
 			$('#'+data.destiny).change();
-			if(data.values.length == 0){
+			if((data.values).length == 0){
 				$('#div-' + data.destiny).hide();
 			}else{
 				$('#div-' + data.destiny).show();

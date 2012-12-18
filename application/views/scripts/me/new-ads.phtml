@@ -1,4 +1,4 @@
-<!--<?php if (count($this->messages)) : ?>
+<?php if (count($this->messages)) : ?>
 	<ul id="messages">
 	<?php foreach ($this->messages as $message) : ?>
 	    <li><?php echo $this->escape($message); ?></li>
@@ -7,201 +7,27 @@
 <?php endif; ?>
 
 
-<?php 
-if ($this->message)
-	echo $this->message;
+<form >
 
-	echo $this->form;
+<div id="div-regions">
+<?php
+echo $this->partial('/partials/filter-region.phtml');
 ?>
--->
-
-<!-- CONTAINER -->
-
-<div style=" padding: 20px 10px;">
-
-	<div style=" width: 250px; margin-bottom: 20px; float: left;">Passo 1 - Informacoes do anuncio</div>
-	<div style=" width: 250px; margin-bottom: 20px; float: left;">Passo 2 - Envie as fotos</div>
-
-	
-	
-	<div style=" display: table; width: 100%; margin-bottom: 15px;">
-		
-		<div style=" width: 500px; float: left;">
-		
-			<ul>
-				<li style="margin-bottom: 5px;">
-	              <select name="sel_categ" id="sel_categ">
-	              	<option selected="selected">Selecione a categoria</option>
-	                <option value="carro">Carro</option>
-					<option value="moto">Moto</option> 
-	              </select>
-            	</li>
-				<li style="margin-bottom: 20px;">
-	              <select>
-	              	<option selected="selected">Selecione seu interesse</option>
-	                <option value="Aluguel">Alugar</option>
-	                <option value="Compra">Comprar</option> 
-                	<option value="Venda">Vender</option>  
-	              </select>
-            	</li>  
-            	<li style="margin-bottom: 10px;">
-            		<input type="text" name="nome_produto" value="title" style="width: 400px; height: 40px;"/>
-            	</li>
-            	<li>
-            		<textarea style="width: 500px; height: 150px;">desc</textarea>
-            	</li>          
-            </ul>
-		
-		</div>
-		
-		
-	
-		
-		<div style=" width: 400px; float: right;">
-		
-			<ul>
-				<li>
-					<input type="text" name="nome_produto" value="fone" style="width: 400px; height: 40px;"/>
-				</li>
-				<li>
-					<input type="text" name="nome_produto" value="email" style="width: 400px; height: 40px;"/>
-				</li>
-			</ul>
-
-		</div>
-	
-	</div>
-	
-	
-	
-	
-	<!-- CONTAINER EXIBE CATEG -->	
-	
-	
-	<div id="exibe_fcateg" style=" width: 100%; display: table;">
-	
-
-	<!-- DIV CARRO -->
-	
-	
-		<div id="carro" style="width: 100%; display: table; ">
-		
-			<div style=" width: 400px; float: left;">
-				
-				<ul>
-					<li style="margin-bottom: 10px;">
-		              <select name="sel_categ" id="sel_categ">
-		              	<option selected="selected">Selecione a marca</option>
-		                <option value="volkswagen">Volkswagen</option>
-		              </select>
-	            	</li>
-					<li style="margin-bottom: 10px;">
-		              <select>
-		              	<option selected="selected">Informe o modelo</option>
-		                <option value="gol">Gol</option> 
-		              </select>
-	            	</li>
-	            	<li style="margin-bottom: 10px;">
-		              <select>
-		              	<option selected="selected">Ano</option>
-		                <option value="1000">1000</option> 
-		              </select>
-	            	</li>
-	            	<li style="margin-bottom: 10px;">
-		              <select>
-		              	<option selected="selected">Combustivel</option>
-		                <option value="gasolina">Gasolina</option> 
-		              </select>
-	            	</li>
-	            	<li style="margin-bottom: 10px;">
-		              <select>
-		              	<option selected="selected">Motor</option>
-		                <option value="1.0">1.0</option> 
-		              </select>
-	            	</li>  
-	           		<li style="margin-bottom: 10px;">
-		              <select>
-		              	<option selected="selected">Cor</option>
-		                <option value="amarelo">Amarelo</option> 
-		              </select>
-	            	</li>  
-	            	<li style="margin-bottom: 10px;">
-		              <select>
-		              	<option selected="selected">Portas</option>
-		                <option value="2">2</option> 
-		              </select>
-	            	</li>  
-	            	<li style="margin-bottom: 10px;">
-		              <select>
-		              	<option selected="selected">Estado</option>
-		                <option value="novo">Novo</option> 
-		                <option value="usado">Usado</option>
-		              </select>
-	            	</li>
-	            	<li style="margin-bottom: 10px;">
-						<input type="text" name="nome_produto" value="Quilometragem" style="width: 210px; height: 40px;"/>
-	            	</li> 
-	            	<li style="margin-bottom: 10px;">
-						<input type="text" name="nome_produto" value="Preco" style="width: 210px; height: 40px;"/>
-	            	</li>    
-	            </ul>
-			</div>
-			
-<!-- RIGHT -->			
-
-<style>
-#x li{margin-bottom: 30px;}
-button {float: right; margin-top: 20px;}
-</style>
-			<div id="x" style=" float: right;">
-				
-				<ul style="float: left;  margin-left: 10px;">
-					<li><input type="checkbox" value="completo"> Completo</li>
-					<li><input type="checkbox" value="abs"> ABS</li>
-					<li><input type="checkbox" value="air bag duplo"> Air Bag Duplo</li>
-					<li><input type="checkbox" value="alarme"> Alarme</li>
-					<li><input type="checkbox" value="ar condicionado"> Ar Condicionado</li>	 
-	           </ul>
-				<ul style="float: left;  margin-left: 10px;">
-					<li><input type="checkbox" value="ar quente"> Ar quente</li>
-					<li><input type="checkbox" value="bancos de couro"> Bancos de Couro</li>
-					<li><input type="checkbox" value="blindado"> Blindado</li>
-					<li><input type="checkbox" value="cambio automatico"> Cambio Automatico</li>
-					<li><input type="checkbox" value="desembacador traseiro"> Desembacador traseiro</li>	 
-	           </ul>
-				<ul style="float: left;  margin-left: 10px;">
-					<li><input type="checkbox" value="ar quente"> Ar quente</li>
-					<li><input type="checkbox" value="bancos de couro"> Bancos de Couro</li>
-					<li><input type="checkbox" value="blindado"> Blindado</li>
-					<li><input type="checkbox" value="cambio automatico"> Cambio Automatico</li>
-					<li><input type="checkbox" value="desembacador traseiro"> Desembacador traseiro</li>	 
-	           </ul>	           	           
-			</div>		<!-- FINALIZA DIV RIGHT -->		
-			
-			<button>PROXIMO PASSO</button>
-			
-		</div>	<!-- FINALIZA DIV CARRO -->	
-		
-		
-		
-		<div id="moto">Selecionado moto</div>
-	
-	</div> <!-- FINALIZA CONTAINER EXIBE CATEG -->
-
+</div>
+<hr>
+<div id="div-categories">
+<?php
+echo $this->partial('/partials/filter-category.phtml');
+?>
 </div>
 
-<!-- FINALIZA CONTAINER -->
 
-
-
-<!-- 
-// 	$this->headLink()
-// 	->prependStylesheet($this->baseUrl('/css/chosen.css'));
- -->
+</form>
 
 
 <?php 
 	$this->headScript()->setSeparator(PHP_EOL)
-	->prependFile($this->baseUrl('/js/show_filter_adscad.js'));
-		
+		->prependFile($this->baseUrl('/js/new-ads.js'));
+	$this->headLink()
+		->prependStylesheet($this->baseUrl('/css/new-ads.css'));		
 ?>

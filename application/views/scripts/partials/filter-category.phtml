@@ -1,13 +1,55 @@
-<div id="filter-category">
+<pre>
+<?php 
+	$categories = new Application_Model_DbTable_CategoryName();
+	//print_r($categories->getCategories());
+	//print_r(json_encode($categories->getCategories()));
 
-	<ul rel="nivel_1">
-		<?php foreach ($this->categories as $category) :?>
-			<li class="li_category" rel="<?php echo $category['id'] ?>"> <?php echo $category['name'] ?></li>
-		<?php endforeach; ?>
-	</ul>
+
 	
-</div>
+?>
+</pre>
 
+<script type="text/javascript">
+var category = Array();
+
+<?php 
+$categories = new Application_Model_DbTable_CategoryName();
+echo getHtmlMenu($categories->getCategories());
+
+function getHtmlMenu($array)
+{
+	echo "\n";
+	echo 'category['.$array[0]["sub"].'] =  new Array()'.PHP_EOL;
+	foreach ($array as $categoria)
+	{
+
+		echo "\n";
+		echo 'var newArray = new Array()'.PHP_EOL;
+		echo 'newArray["id"] = '.$categoria["id"].';'.PHP_EOL;
+		echo 'newArray["name"] = "'. $categoria["name"].'";'.PHP_EOL;
+		echo 'category['.$categoria["sub"].'].push(newArray)'.PHP_EOL;
+	if(count($categoria['subs']) > 0){
+		echo getHtmlMenu($categoria['subs']);
+	}
+	}
+
+}
+?>
+/*
+var newArray = new Array();
+newArray["id"] = 0;
+newArray["name"] = "Selecione";
+category[0].unshift(newArray);
+*/
+//console.log(category[1]);
+</script>
+<div id="selects-categories">
+
+<select id="categories_0" class="onchange-category">
+	<option>Selecione</option>
+</select>
+
+</div>
 <?php 
 	$this->headScript()->setSeparator(PHP_EOL)
 		->prependFile($this->baseUrl('/js/partials/filter-category.js'));;

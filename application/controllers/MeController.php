@@ -49,6 +49,8 @@ class MeController extends Zend_Controller_Action
     	$this->view->paginator = $ads;
     }
 
+    
+    
     public function newAdsAction()
     {
     	$form = new Application_Form_AdsNew();
@@ -94,6 +96,8 @@ class MeController extends Zend_Controller_Action
     	$this->view->form = $form;
     }
 
+    
+    
     public function newAdsPhotoAction()
     {
     	$adsMapper = new Application_Model_AdsMapper();
@@ -102,6 +106,8 @@ class MeController extends Zend_Controller_Action
     	$this->view->ad = $adsMapper->find($this->_getParam('id', '0'), $adModel);  
     }
 
+    
+    
     public function editAdsAction()
     {
     	/*
@@ -135,7 +141,7 @@ class MeController extends Zend_Controller_Action
     	$this->view->form = $form;
     	 
     	$this->view->ad = $ads;
-    	$this->view->images = $ads->findDependentRowset("Application_Model_DbTable_Images");
+    	$this->view->images = $ads->findDependentRowset("Application_Model_DbTable_AdsImages");
     }
 
 
@@ -188,11 +194,11 @@ class MeController extends Zend_Controller_Action
     					 
     					if(move_uploaded_file($tmp, $path.$actual_image_name))
     					{
-    						$imagesMapper = new Application_Model_ImagesMapper();
+    						$imagesMapper = new Application_Model_AdsImagesMapper();
     						
     						$title = $this->_getParam('tile', '');
     						$description = $this->_getParam('description', '');
-    						$id_image = $imagesMapper->save($actual_image_name, $ads, $title, $description);   /************* VALIDAR O ID DO ANUNCIO, SE PERTENCE AO USUARIO QUE ESTA ENVIANDO O POST */
+    						$id_image = $imagesMapper->save($actual_image_name, $ads, $cover, $title, $description);   /************* VALIDAR O ID DO ANUNCIO, SE PERTENCE AO USUARIO QUE ESTA ENVIANDO O POST */
     
     						$thumb500px = new Application_View_Helper_EasyThumbnail($path.$actual_image_name, $path.$actual_image_name, 500);
     						if ($thumb500px) {
@@ -236,7 +242,7 @@ class MeController extends Zend_Controller_Action
     public function deleteImageAdsAction()
     {
     	$id_image = $this->_getParam('idImage', null);
-    	$imageMapper = new Application_Model_ImagesMapper();
+    	$imageMapper = new Application_Model_AdsImagesMapper();
     	
     	$id_ads = $imageMapper->selectIdAds($id_image); // pega o ID do anuncio desta imagem, para garantir que nao delete outra imagem
     	if(@!in_array($id_ads->id_ads, $this->ids_ads_by_user))  //verifica se o ID do anuncio(ADS) pertence realmente ao USER
